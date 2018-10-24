@@ -1,1 +1,14 @@
 C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\bin\Debug\Software Engineering cw1.exe.config
+C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\obj\Debug\Software Engineering cw1.csprojResolveAssemblyReference.cache
+C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\obj\Debug\MainWindow.g.cs
+C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\obj\Debug\App.g.cs
+C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\obj\Debug\Software Engineering cw1_MarkupCompile.cache
+C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\obj\Debug\Software Engineering cw1_MarkupCompile.lref
+C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\bin\Debug\Software Engineering cw1.exe
+C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\bin\Debug\Software Engineering cw1.pdb
+C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\obj\Debug\MainWindow.baml
+C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\obj\Debug\Software Engineering cw1.g.resources
+C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\obj\Debug\Software_Engineering_cw1.Properties.Resources.resources
+C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\obj\Debug\Software Engineering cw1.csproj.GenerateResource.Cache
+C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\obj\Debug\Software Engineering cw1.exe
+C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\obj\Debug\Software Engineering cw1.pdb

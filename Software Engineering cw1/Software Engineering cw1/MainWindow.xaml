@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Software_Engineering_cw1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="503.738" Width="525">
     <Grid>
-        
+        <Label x:Name="label" Content="Napier Bank Message Filtering Service&#xD;&#xA;" HorizontalAlignment="Left" Height="59" Margin="120,23,0,0" VerticalAlignment="Top" Width="287"/>
+        <Label x:Name="label1" Content="Please enter a Message ID:" HorizontalAlignment="Left" Height="29" Margin="25,108,0,0" VerticalAlignment="Top" Width="148"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="29" Margin="224,108,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="139" RenderTransformOrigin="0.574,0.721" />
+        <Label x:Name="label1_Copy" Content="Please enter your Message:" HorizontalAlignment="Left" Height="29" Margin="25,235,0,0" VerticalAlignment="Top" Width="159"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="109" Margin="225,240,0,0" TextWrapping="Wrap" Text="Please enter message here" VerticalAlignment="Top" Width="138"/>
+        <Button x:Name="button" Content="Send" HorizontalAlignment="Left" Height="46" Margin="330,396,0,0" VerticalAlignment="Top" Width="92" Click="button_Click"/>
+        <Label x:Name="label1_Copy1" Content="Please enter a your sender details" HorizontalAlignment="Left" Height="29" Margin="25,176,0,0" VerticalAlignment="Top" Width="194"/>
+        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="29" Margin="224,176,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="139" RenderTransformOrigin="0.574,0.721" />
+
     </Grid>
 </Window>

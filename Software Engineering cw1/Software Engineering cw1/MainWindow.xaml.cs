@@ -29,35 +29,92 @@ namespace Software_Engineering_cw1
         private void button_Click(object sender, RoutedEventArgs e)
         {
             string messageID = textBox.Text;
-            string messageBody = textBlock.Text;
+            string messageBody = textBox3.Text;
             string senderID = textBox2.Text;
 
-            if (messageID[0].ToString().Equals("S"))
-            {  
-                if (IsPhoneNumber(senderID))
+
+            if (messageID.Length != 10)
+            {
+                MessageBox.Show("The Message ID must be 10 characters long including the starting letter");
+
+            }
+            else {
+
+                if (messageID != null)
                 {
-                    MessageBox.Show("Phone number is valid");
+
+                    if (messageID[0].ToString().Equals("S") || messageID[0].ToString().Equals("s"))
+                    {
+                        if (IsValidPhoneNumber(senderID))
+                        {
+                            MessageBox.Show("Phone number is valid");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Phone number is not valid");
+                        }
+                    }
+                    else if (messageID[0].ToString().Equals("E") || messageID[0].ToString().Equals("e"))
+                    {
+                        if (IsValidEmail(senderID))
+                        {
+                            MessageBox.Show("Email Address is valid");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Email Address is not valid");
+                        }
+                    }
+                    else if (messageID[0].ToString().Equals("T") || messageID[0].ToString().Equals("t"))
+                    {
+                        if (IsValidTwitterHandle(senderID))
+                        {
+                            MessageBox.Show("Twiter handle is valid");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Twiter handle is not valid");
+                        }
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Phone number is not valid");
+                    MessageBox.Show("Please start your Message ID with either 'S', 'E' or 'T'");
                 }
             }
-            else if (messageID[0].ToString().Equals("E"))
-            {
-                MessageBox.Show("E");
-            }
-            else if (messageID[0].ToString().Equals("T"))
-            {
-                MessageBox.Show("T");
-            }
         }
 
-        public static bool IsPhoneNumber(string number)
+        public static bool IsValidPhoneNumber(string number)
         {
-            return Regex.Match(number, @"^(\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$").Success;
+            return Regex.Match(number, @"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$").Success;
+        }
+        
+        public static bool IsValidEmail(string email)
+        {
+            try
+            {
+                var emailAddress = new System.Net.Mail.MailAddress(email);
+                return emailAddress.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        
+        public static bool IsValidTwitterHandle(string twitterHandle)
+        {
+          if(twitterHandle[0].ToString().Equals("@"))
+            {
+                return true;
+            }
+            else
+            {
+               return false;
+            }
+        }
+
+
+
     }
 }

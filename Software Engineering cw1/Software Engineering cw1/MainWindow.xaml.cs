@@ -25,8 +25,17 @@ namespace Software_Engineering_cw1
         public MainWindow()
         {
             InitializeComponent();
+            InitialsingData();
         }
 
+
+        private void InitialsingData()
+        {
+            label4.Content = "";
+            label5.Content = "";
+            label6.Content = "";
+            textBox4.Visibility = Visibility.Hidden;
+        }
         private void button_Click(object sender, RoutedEventArgs e)
         {
             string messageID = textBox.Text;
@@ -132,11 +141,11 @@ namespace Software_Engineering_cw1
                     {
                         if (IsValidTwitterHandle(senderID))
                         {
-                            MessageBox.Show("Twiter handle is valid");
+                            MessageBox.Show("Twitter handle is valid");
                         }
                         else
                         {
-                            MessageBox.Show("Twiter handle is not valid");
+                            MessageBox.Show("Twitter handle is not valid");
                         }
                     }
                 }
@@ -167,7 +176,7 @@ namespace Software_Engineering_cw1
 
         public static bool IsValidTwitterHandle(string twitterHandle)
         {
-          if(twitterHandle[0].ToString().Equals("@"))
+          if(twitterHandle[0].ToString().Equals("@") && twitterHandle.Length <=15)
             {
                 return true;
             }
@@ -177,7 +186,65 @@ namespace Software_Engineering_cw1
             }
         }
 
+        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string messageID = textBox.Text;
+            
+            if (messageID != "")
+            {
+                string messageType = messageID[0].ToString();
+                if(messageType == "S")
+                {
+                    label4.Content = "SMS Selected";
+                    label2.Content = "Please Enter your phone number Here:";
+                    label5.Content = "";
+                    label3.Content = "Please Enter your Text Here:";
+                    label6.Content = "";
+                    textBox4.Visibility = Visibility.Hidden;
+                    textBox3.Margin = new Thickness(241, 205, 0, 0);
+                    label3.Margin = new Thickness(10, 205, 0, 0);
+                    button.Margin = new Thickness(333, 369, 0, 0);
+                }
+                else if(messageType == "E")
+                {
+                    label4.Content = "Email Selected";
+                    label2.Content = "Please Enter your Email Address Here:";
+                    label5.Content = "";
+                    label3.Content = "Please Write your Email Here:";
+                    label6.Content = "Please Write your Subject Here";
+                    textBox4.Visibility = Visibility.Visible;
+                    textBox3.Margin = new Thickness(241, 265, 0, 0);
+                    label3.Margin = new Thickness(10, 265, 0, 0);
+                    button.Margin = new Thickness(330, 410, 0, 0);
+                }
+                else if (messageType == "T")
+                {
+                    label4.Content = "Twitter Selected";
+                    label2.Content = "Please Enter your Twitter Handle Here:";
+                    label5.Content = "";
+                    label3.Content = "Please Enter your Tweet Here";
+                    label6.Content = "";
+                    textBox4.Visibility = Visibility.Hidden;
+                    textBox3.Margin = new Thickness(241, 205, 0, 0);
+                    label3.Margin = new Thickness(10, 205, 0, 0);
+                    button.Margin = new Thickness(333, 369, 0, 0);
 
+                }
+                else
+                {
+                    label4.Content = "Incorrect Message Type";
+                    label5.Content = "Detected";
+                    label2.Content = "Please use S, E or T Above:";
+                    label3.Content = "";
+                    textBox4.Visibility = Visibility.Hidden;
+                    textBox3.Margin = new Thickness(241, 205, 0, 0);
+                    label3.Margin = new Thickness(10, 205, 0, 0);
+                    button.Margin = new Thickness(333, 369, 0, 0);
 
+                }
+            }
+
+        }
+            
     }
 }

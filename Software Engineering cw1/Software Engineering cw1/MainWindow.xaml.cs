@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,9 @@ namespace Software_Engineering_cw1
             string messageID = textBox.Text;
             string messageBody = textBox3.Text;
             string senderID = textBox2.Text;
+            string changeAbbreviation;
+            bool allWordsChanged = false;
+            int i = 0;
 
 
             if (messageID.Length != 10)
@@ -48,6 +52,65 @@ namespace Software_Engineering_cw1
                         if (IsValidPhoneNumber(senderID))
                         {
                             MessageBox.Show("Phone number is valid");
+                            if (messageBody.Length <= 140)
+                            {
+                                ReadingExcel readingFromExcel = new ReadingExcel();
+                                ArrayList textWords = readingFromExcel.readFromExcel();
+                                ArrayList splicedTextWords = readingFromExcel.spliceAnArray(textWords);
+                                List<string> messageBodySplit = new List<string>(messageBody.Split(null));
+
+                                for (int j = 0; j <= messageBodySplit.Count; j++)
+                                {
+                                    for (i = 0; i <= splicedTextWords.Count; i++)
+                                    {
+                                        if (i >= splicedTextWords.Count)
+                                        {
+                                            i = 0;
+                                            if (j == messageBodySplit.Count - 1)
+                                            {
+                                                allWordsChanged = true;
+                                            }
+                                            else
+                                            {
+                                                j++;
+                                            }
+                                        }
+                                        if (allWordsChanged == false)
+                                        {
+                                            if (messageBodySplit[j].ToString().Equals(splicedTextWords[i].ToString()))
+                                            {
+                                                MessageBox.Show("Match");
+                                                changeAbbreviation = splicedTextWords[i + 1].ToString();
+                                                changeAbbreviation = "<" + changeAbbreviation;
+                                                changeAbbreviation = changeAbbreviation + ">";
+                                                messageBodySplit.Insert(j + 1, changeAbbreviation);
+                                                textBox3.Text = string.Join(" ", messageBodySplit);
+                                                j++;
+                                                i = -1;
+                                            }
+
+
+                                            if (j >= messageBodySplit.Count)
+                                            {
+                                                break;
+                                            }
+                                        }
+                                        if(allWordsChanged == true)
+                                        {
+                                            break;
+                                        }
+                                    }
+                                    if(allWordsChanged == true)
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Your Message is too long, no more than 140 characters");
+
+                            }
                         }
                         else
                         {

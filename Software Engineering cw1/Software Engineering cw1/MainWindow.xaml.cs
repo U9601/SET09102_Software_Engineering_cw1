@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -22,6 +23,8 @@ namespace Software_Engineering_cw1
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private SirList store = new SirList();
         public MainWindow()
         {
             InitializeComponent();
@@ -44,7 +47,6 @@ namespace Software_Engineering_cw1
             string changeAbbreviation;
             string emailSubject = textBox4.Text;
             bool allWordsChanged = false;
-            int i = 0;
 
 
             if (messageID.Length != 10)
@@ -71,7 +73,7 @@ namespace Software_Engineering_cw1
 
                                 for (int j = 0; j <= messageBodySplit.Count; j++)
                                 {
-                                    for (i = 0; i <= splicedTextWords.Count; i++)
+                                    for ( int i = 0; i <= splicedTextWords.Count; i++)
                                     {
                                         if (i >= splicedTextWords.Count)
                                         {
@@ -91,8 +93,7 @@ namespace Software_Engineering_cw1
                                             {
                                                 MessageBox.Show("Match");
                                                 changeAbbreviation = splicedTextWords[i + 1].ToString();
-                                                changeAbbreviation = "<" + changeAbbreviation;
-                                                changeAbbreviation = changeAbbreviation + ">";
+                                                changeAbbreviation = "<" + changeAbbreviation + ">";
                                                 messageBodySplit.Insert(j + 1, changeAbbreviation);
                                                 textBox3.Text = string.Join(" ", messageBodySplit);
                                                 j++;
@@ -151,9 +152,12 @@ namespace Software_Engineering_cw1
                                 {
                                     try
                                     {
-                                        Date = DateTime.Parse(text);
-                                        hasDate = true;
-                                        break;
+                                        if (inputSubject.Contains("SIR"))
+                                        {
+                                            Date = DateTime.Parse(text);
+                                            hasDate = true;
+                                            break;
+                                        }
                                     }
                                     catch (Exception ex)
                                     {
@@ -163,24 +167,59 @@ namespace Software_Engineering_cw1
                                 if (hasDate)
                                 {
                                     MessageBox.Show("important Email");
+                                    SirList sirListData = new SirList();
+                                    bool onlySix = false;
+                                    if (inputBody.Contains("Sort"))
+                                    {
+                                        sirListData.SortCode = (inputBody[2]);
+                                    }
+                                    if (inputBody.Contains("Nature"))
+                                    {
+                                        if (inputBody.Count == 7)
+                                        {
+                                            sirListData.NatureofIncident = inputBody[6];
+                                            onlySix = true;
+
+                                        }
+                                        if (onlySix == false)
+                                        {
+
+                                            if (inputBody[7].Equals("Attack") || inputBody[7].Equals("Theft") || inputBody[7].Equals("Abuse") || inputBody[7].Equals("Threat") || inputBody[7].Equals("Incident") || inputBody[7].Equals("Loss"))
+                                            {
+                                                sirListData.NatureofIncident = inputBody[6].ToString() + " " + inputBody[7].ToString();
+                                            }
+                                            else
+                                            {
+                                                sirListData.NatureofIncident = inputBody[6];
+                                            }
+                                        }
+                                    }
+                                    ReadingExcel.add(sirListData);
+
                                 }
                                 else
                                 {
                                     MessageBox.Show("Not important");
-                                    if (messageBody.IndexOf("https://") > -1 || messageBody.IndexOf("www.") > -1 || messageBody.IndexOf("http://") > -1 )
+                                    int counter = inputBody.Count;
+                                    for(int i = 0; i <= inputBody.Count; i++)
                                     {
-                                        int counter = messageBody.IndexOf("https://");
-                                        MessageBox.Show("Qurantine");
-                                        string url = inputBody[counter].ToString();
-                                        url = "<" + "URL Has Been Qrantined" + ">";
-                                        inputBody.Insert(counter + 1,  url);
-                                        inputBody.RemoveAt(counter);
-                                        textBox3.Text = string.Join(" ", inputBody);
+                                        if (counter == i)
+                                        {
+                                            break;
+                                        }
+
+                                        if (inputBody[i].Contains("https://") || inputBody[i].Contains("http://") || inputBody[i].Contains("www."))
+                                        {
+                                            MessageBox.Show("Qurantine");
+                                            string url = inputBody[i].ToString();
+                                            url = "<" + "URL Qrantined" + ">";
+                                            inputBody.Insert(i + 1, url);
+                                            inputBody.RemoveAt(i);
+                                            textBox3.Text = string.Join(" ", inputBody);
+                                        }
+                                        
                                     }
-                                    else
-                                    {
-                                        MessageBox.Show("No Qurantine");
-                                    }
+                                 
                                 }
 
                             }
@@ -299,6 +338,13 @@ namespace Software_Engineering_cw1
             }
 
         }
-            
+
+        private void SirListButton_Click(object sender, RoutedEventArgs e)
+        {
+            SirListDisplay newWin = new SirListDisplay();
+            newWin.Show();
+
+           // WindowState = WindowState.Minimized;
+        }
     }
 }

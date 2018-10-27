@@ -26,3 +26,5 @@ C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engin
 \\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\obj\Debug\Software Engineering cw1.g.resources
 \\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\obj\Debug\Software_Engineering_cw1.Properties.Resources.resources
 \\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\obj\Debug\Software Engineering cw1.csproj.GenerateResource.Cache
+C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\obj\Debug\SirListDisplay.g.cs
+C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\obj\Debug\SirListDisplay.baml

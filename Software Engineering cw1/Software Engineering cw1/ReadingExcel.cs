@@ -1,10 +1,15 @@
-﻿using System;
+﻿using Software_Engineering_cw1;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 
 public class ReadingExcel
 {
-	public ArrayList readFromExcel()
+    private static ObservableCollection<SirList> sirList = new ObservableCollection<SirList>();
+
+    public ArrayList readFromExcel()
     {
         ArrayList readingfromExcel = new ArrayList();
         using (StreamReader reader = new StreamReader("textwords.csv"))
@@ -54,5 +59,17 @@ public class ReadingExcel
         }
 
     }
+
+    public static void add(SirList newSirList)
+    {
+        sirList.Add(newSirList);
+    }
+
+    public static ObservableCollection<SirList> getData()
+    {
+        return sirList;
+
+    }
+
 }
 

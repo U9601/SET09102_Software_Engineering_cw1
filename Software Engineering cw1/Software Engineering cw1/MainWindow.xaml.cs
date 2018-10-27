@@ -200,6 +200,10 @@ namespace Software_Engineering_cw1
                     label5.Content = "";
                     label3.Content = "Please Enter your Text Here:";
                     label6.Content = "";
+                    textBox.Clear();
+                    textBox2.Clear();
+                    textBox3.Clear();
+                    textBox4.Clear();
                     textBox4.Visibility = Visibility.Hidden;
                     textBox3.Margin = new Thickness(241, 205, 0, 0);
                     label3.Margin = new Thickness(10, 205, 0, 0);
@@ -212,6 +216,10 @@ namespace Software_Engineering_cw1
                     label5.Content = "";
                     label3.Content = "Please Write your Email Here:";
                     label6.Content = "Please Write your Subject Here";
+                    textBox.Clear();
+                    textBox2.Clear();
+                    textBox3.Clear();
+                    textBox4.Clear();
                     textBox4.Visibility = Visibility.Visible;
                     textBox3.Margin = new Thickness(241, 265, 0, 0);
                     label3.Margin = new Thickness(10, 265, 0, 0);
@@ -224,6 +232,10 @@ namespace Software_Engineering_cw1
                     label5.Content = "";
                     label3.Content = "Please Enter your Tweet Here";
                     label6.Content = "";
+                    textBox.Clear();
+                    textBox2.Clear();
+                    textBox3.Clear();
+                    textBox4.Clear();
                     textBox4.Visibility = Visibility.Hidden;
                     textBox3.Margin = new Thickness(241, 205, 0, 0);
                     label3.Margin = new Thickness(10, 205, 0, 0);
@@ -236,6 +248,10 @@ namespace Software_Engineering_cw1
                     label5.Content = "Detected";
                     label2.Content = "Please use S, E or T Above:";
                     label3.Content = "";
+                    textBox.Clear();
+                    textBox2.Clear();
+                    textBox3.Clear();
+                    textBox4.Clear();
                     textBox4.Visibility = Visibility.Hidden;
                     textBox3.Margin = new Thickness(241, 205, 0, 0);
                     label3.Margin = new Thickness(10, 205, 0, 0);

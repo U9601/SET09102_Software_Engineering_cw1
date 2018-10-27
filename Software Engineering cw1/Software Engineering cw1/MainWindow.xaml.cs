@@ -42,6 +42,7 @@ namespace Software_Engineering_cw1
             string messageBody = textBox3.Text;
             string senderID = textBox2.Text;
             string changeAbbreviation;
+            string emailSubject = textBox4.Text;
             bool allWordsChanged = false;
             int i = 0;
 
@@ -131,6 +132,59 @@ namespace Software_Engineering_cw1
                         if (IsValidEmail(senderID))
                         {
                             MessageBox.Show("Email Address is valid");
+                            if (emailSubject.Length > 20)
+                            {
+                                MessageBox.Show("Subject is too long must be less and 20 characters");
+                            }
+                            else if (messageBody.Length > 1028)
+                            {
+                                MessageBox.Show("Message Text is too long must be less tahn 1028 characters");
+                            }
+                            else
+                            {
+                                string[] inputSubject = emailSubject.Split(null);
+                                List<string> inputBody = new List<string>(messageBody.Split(null));
+                                DateTime Date = new DateTime();
+                                bool hasDate = false;
+
+                                foreach(string text in inputSubject)
+                                {
+                                    try
+                                    {
+                                        Date = DateTime.Parse(text);
+                                        hasDate = true;
+                                        break;
+                                    }
+                                    catch (Exception ex)
+                                    {
+
+                                    }
+                                }
+                                if (hasDate)
+                                {
+                                    MessageBox.Show("important Email");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Not important");
+                                    if (messageBody.IndexOf("https://") > -1 || messageBody.IndexOf("www.") > -1 || messageBody.IndexOf("http://") > -1 )
+                                    {
+                                        int counter = messageBody.IndexOf("https://");
+                                        MessageBox.Show("Qurantine");
+                                        string url = inputBody[counter].ToString();
+                                        url = "<" + "URL Has Been Qrantined" + ">";
+                                        inputBody.Insert(counter + 1,  url);
+                                        inputBody.RemoveAt(counter);
+                                        textBox3.Text = string.Join(" ", inputBody);
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("No Qurantine");
+                                    }
+                                }
+
+                            }
+
                         }
                         else
                         {
@@ -196,14 +250,10 @@ namespace Software_Engineering_cw1
                 if(messageType == "S")
                 {
                     label4.Content = "SMS Selected";
-                    label2.Content = "Please Enter your phone number Here:";
+                    label2.Content = "Please Enter your Phone Number Here:";
                     label5.Content = "";
                     label3.Content = "Please Enter your Text Here:";
                     label6.Content = "";
-                    textBox.Clear();
-                    textBox2.Clear();
-                    textBox3.Clear();
-                    textBox4.Clear();
                     textBox4.Visibility = Visibility.Hidden;
                     textBox3.Margin = new Thickness(241, 205, 0, 0);
                     label3.Margin = new Thickness(10, 205, 0, 0);
@@ -216,10 +266,6 @@ namespace Software_Engineering_cw1
                     label5.Content = "";
                     label3.Content = "Please Write your Email Here:";
                     label6.Content = "Please Write your Subject Here";
-                    textBox.Clear();
-                    textBox2.Clear();
-                    textBox3.Clear();
-                    textBox4.Clear();
                     textBox4.Visibility = Visibility.Visible;
                     textBox3.Margin = new Thickness(241, 265, 0, 0);
                     label3.Margin = new Thickness(10, 265, 0, 0);
@@ -232,10 +278,6 @@ namespace Software_Engineering_cw1
                     label5.Content = "";
                     label3.Content = "Please Enter your Tweet Here";
                     label6.Content = "";
-                    textBox.Clear();
-                    textBox2.Clear();
-                    textBox3.Clear();
-                    textBox4.Clear();
                     textBox4.Visibility = Visibility.Hidden;
                     textBox3.Margin = new Thickness(241, 205, 0, 0);
                     label3.Margin = new Thickness(10, 205, 0, 0);
@@ -248,10 +290,6 @@ namespace Software_Engineering_cw1
                     label5.Content = "Detected";
                     label2.Content = "Please use S, E or T Above:";
                     label3.Content = "";
-                    textBox.Clear();
-                    textBox2.Clear();
-                    textBox3.Clear();
-                    textBox4.Clear();
                     textBox4.Visibility = Visibility.Hidden;
                     textBox3.Margin = new Thickness(241, 205, 0, 0);
                     label3.Margin = new Thickness(10, 205, 0, 0);

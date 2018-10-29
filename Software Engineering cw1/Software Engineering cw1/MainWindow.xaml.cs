@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -67,6 +69,15 @@ namespace Software_Engineering_cw1
                                 MethodsList smsAbbreviations = new MethodsList();
                                 List<string> newinputBody = smsAbbreviations.smsAbbreviations(inputBody);
                                 textBox3.Text = string.Join(" ", newinputBody);
+                                SMS sms = new SMS();
+                                sms.MessageID = textBox.Text;
+                                sms.PhoneNumber = textBox2.Text;
+                                sms.MessageBody = textBox3.Text;
+                                using (StreamWriter writer = File.CreateText(@"output.JSON"))
+                                {
+                                    JsonSerializer serializer = new JsonSerializer();
+                                    serializer.Serialize(writer, sms);
+                                }
                             }
                             else
                             {

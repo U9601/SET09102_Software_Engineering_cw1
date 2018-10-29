@@ -19,7 +19,7 @@
         <Label x:Name="label5" Content="" HorizontalAlignment="Left" Height="29" Margin="421,124,0,0" VerticalAlignment="Top" Width="114"/>
         <Label x:Name="label6" Content="" HorizontalAlignment="Left" Height="29" Margin="10,205,0,0" VerticalAlignment="Top" Width="199"/>
         <TextBox x:Name="textBox4" HorizontalAlignment="Left" Height="29" Margin="241,205,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="139" RenderTransformOrigin="0.574,0.721" />
-        <Button x:Name="SirListButton" Content="View Sir List" HorizontalAlignment="Left" Height="36" Margin="202,427,0,0" VerticalAlignment="Top" Width="92" Click="SirListButton_Click"/>
+        <Button x:Name="ListsButton" Content="View Lists" HorizontalAlignment="Left" Height="36" Margin="202,427,0,0" VerticalAlignment="Top" Width="92" Click="ListButton_Click"/>
 
     </Grid>
 </Window>

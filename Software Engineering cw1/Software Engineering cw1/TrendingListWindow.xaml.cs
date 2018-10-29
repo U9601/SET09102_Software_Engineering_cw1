@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Software_Engineering_cw1
 {
     /// <summary>
-    /// Interaction logic for SirListDisplay.xaml
+    /// Interaction logic for TrendingList.xaml
     /// </summary>
-    public partial class SirListDisplay : Window
+    public partial class TrendingListWindow : Window
     {
-        public SirListDisplay()
+        public TrendingListWindow()
         {
             InitializeComponent();
             datagrid();
@@ -27,7 +27,7 @@ namespace Software_Engineering_cw1
 
         public void datagrid()
         {
-            dataGrid.ItemsSource = MethodsList.getDataSirList();
+            dataGrid.ItemsSource = MethodsList.getDataTrendingList();
         }//end data grid
     }
 }

@@ -44,10 +44,8 @@ namespace Software_Engineering_cw1
             string messageID = textBox.Text;
             string messageBody = textBox3.Text;
             string senderID = textBox2.Text;
-            string changeAbbreviation;
             string emailSubject = textBox4.Text;
-            bool allWordsChanged = false;
-
+            List<string> inputBody = new List<string>(messageBody.Split(null));
 
             if (messageID.Length != 10)
             {
@@ -66,56 +64,9 @@ namespace Software_Engineering_cw1
                             MessageBox.Show("Phone number is valid");
                             if (messageBody.Length <= 140)
                             {
-                                ReadingExcel readingFromExcel = new ReadingExcel();
-                                ArrayList textWords = readingFromExcel.readFromExcel();
-                                ArrayList splicedTextWords = readingFromExcel.spliceAnArray(textWords);
-                                List<string> messageBodySplit = new List<string>(messageBody.Split(null));
-
-                                for (int j = 0; j <= messageBodySplit.Count; j++)
-                                {
-                                    for ( int i = 0; i <= splicedTextWords.Count; i++)
-                                    {
-                                        if (i >= splicedTextWords.Count)
-                                        {
-                                            i = 0;
-                                            if (j == messageBodySplit.Count - 1)
-                                            {
-                                                allWordsChanged = true;
-                                            }
-                                            else
-                                            {
-                                                j++;
-                                            }
-                                        }
-                                        if (allWordsChanged == false)
-                                        {
-                                            if (messageBodySplit[j].ToString().Equals(splicedTextWords[i].ToString()))
-                                            {
-                                                MessageBox.Show("Match");
-                                                changeAbbreviation = splicedTextWords[i + 1].ToString();
-                                                changeAbbreviation = "<" + changeAbbreviation + ">";
-                                                messageBodySplit.Insert(j + 1, changeAbbreviation);
-                                                textBox3.Text = string.Join(" ", messageBodySplit);
-                                                j++;
-                                                i = -1;
-                                            }
-
-
-                                            if (j >= messageBodySplit.Count)
-                                            {
-                                                break;
-                                            }
-                                        }
-                                        if(allWordsChanged == true)
-                                        {
-                                            break;
-                                        }
-                                    }
-                                    if(allWordsChanged == true)
-                                    {
-                                        break;
-                                    }
-                                }
+                                MethodsList smsAbbreviations = new MethodsList();
+                                List<string> newinputBody = smsAbbreviations.smsAbbreviations(inputBody);
+                                textBox3.Text = string.Join(" ", newinputBody);
                             }
                             else
                             {
@@ -144,7 +95,8 @@ namespace Software_Engineering_cw1
                             else
                             {
                                 string[] inputSubject = emailSubject.Split(null);
-                                List<string> inputBody = new List<string>(messageBody.Split(null));
+                                MethodsList urlQuarantine = new MethodsList();
+                                List<string> newInputBody = urlQuarantine.urlQuarantine(inputBody);
                                 DateTime Date = new DateTime();
                                 bool hasDate = false;
 
@@ -179,6 +131,7 @@ namespace Software_Engineering_cw1
                                         {
                                             sirListData.NatureofIncident = inputBody[6];
                                             onlySix = true;
+                                            textBox3.Text = string.Join(" ", newInputBody);
 
                                         }
                                         if (onlySix == false)
@@ -187,39 +140,25 @@ namespace Software_Engineering_cw1
                                             if (inputBody[7].Equals("Attack") || inputBody[7].Equals("Theft") || inputBody[7].Equals("Abuse") || inputBody[7].Equals("Threat") || inputBody[7].Equals("Incident") || inputBody[7].Equals("Loss"))
                                             {
                                                 sirListData.NatureofIncident = inputBody[6].ToString() + " " + inputBody[7].ToString();
+                                                textBox3.Text = string.Join(" ", newInputBody);
+
                                             }
                                             else
                                             {
                                                 sirListData.NatureofIncident = inputBody[6];
+                                                textBox3.Text = string.Join(" ", newInputBody);
+
                                             }
                                         }
                                     }
-                                    ReadingExcel.add(sirListData);
+                                    
+                                    MethodsList.addSirList(sirListData);
 
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Not important");
-                                    int counter = inputBody.Count;
-                                    for(int i = 0; i <= inputBody.Count; i++)
-                                    {
-                                        if (counter == i)
-                                        {
-                                            break;
-                                        }
+                                    textBox3.Text = string.Join(" ", newInputBody);
 
-                                        if (inputBody[i].Contains("https://") || inputBody[i].Contains("http://") || inputBody[i].Contains("www."))
-                                        {
-                                            MessageBox.Show("Qurantine");
-                                            string url = inputBody[i].ToString();
-                                            url = "<" + "URL Qrantined" + ">";
-                                            inputBody.Insert(i + 1, url);
-                                            inputBody.RemoveAt(i);
-                                            textBox3.Text = string.Join(" ", inputBody);
-                                        }
-                                        
-                                    }
-                                 
                                 }
 
                             }
@@ -234,7 +173,36 @@ namespace Software_Engineering_cw1
                     {
                         if (IsValidTwitterHandle(senderID))
                         {
+                            int counter = inputBody.Count;
                             MessageBox.Show("Twitter handle is valid");
+                            for (int i = 0; i <= inputBody.Count; i++)
+                            {
+                                if (counter == i)
+                                {
+                                    break;
+                                }
+
+                                if (inputBody[i].Contains("#"))
+                                {
+                                    TrendingList hashtagListData = new TrendingList();
+                                    hashtagListData.HashTags = inputBody[i].ToString();
+                                    MethodsList.addTrendingsList(hashtagListData);
+
+                                }
+                                if (inputBody[i].Contains("@"))
+                                {
+                                    MentionsList mentionsListData = new MentionsList();
+                                    mentionsListData.TwitterIDs = inputBody[i].ToString();
+                                    MethodsList.addMentionsList(mentionsListData);
+                                }
+                            }
+
+                            MethodsList smsAbbreviations = new MethodsList();
+                            List<string> newInputBody = smsAbbreviations.smsAbbreviations(inputBody);
+                            textBox3.Text = string.Join(" ", newInputBody);
+
+
+
                         }
                         else
                         {
@@ -338,13 +306,11 @@ namespace Software_Engineering_cw1
             }
 
         }
-
-        private void SirListButton_Click(object sender, RoutedEventArgs e)
+        private void ListButton_Click(object sender, RoutedEventArgs e)
         {
-            SirListDisplay newWin = new SirListDisplay();
+            ListsWindow newWin = new ListsWindow();
             newWin.Show();
 
-           // WindowState = WindowState.Minimized;
         }
     }
 }

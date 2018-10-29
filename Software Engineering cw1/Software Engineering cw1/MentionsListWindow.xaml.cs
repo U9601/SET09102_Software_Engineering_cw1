@@ -15,19 +15,18 @@ using System.Windows.Shapes;
 namespace Software_Engineering_cw1
 {
     /// <summary>
-    /// Interaction logic for SirListDisplay.xaml
+    /// Interaction logic for MentionsList.xaml
     /// </summary>
-    public partial class SirListDisplay : Window
+    public partial class MentionsListWindow : Window
     {
-        public SirListDisplay()
+        public MentionsListWindow()
         {
             InitializeComponent();
             datagrid();
         }
-
         public void datagrid()
         {
-            dataGrid.ItemsSource = MethodsList.getDataSirList();
+            dataGrid.ItemsSource = MethodsList.getDataMentionsList();
         }//end data grid
     }
 }

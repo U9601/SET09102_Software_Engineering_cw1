@@ -1,0 +1,16 @@
+﻿<Window x:Class="Software_Engineering_cw1.ListsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Software_Engineering_cw1"
+        mc:Ignorable="d"
+        Title="ListsWindow" Height="158.957" Width="277.82">
+    <Grid>
+        <Button x:Name="sirListbutton" Content="Sir List" HorizontalAlignment="Left" Height="29" Margin="10,61,0,0" VerticalAlignment="Top" Width="79" Click="sirListbutton_Click"/>
+        <Button x:Name="trendingButton" Content="Trending List" HorizontalAlignment="Left" Height="29" Margin="94,61,0,0" VerticalAlignment="Top" Width="79" Click="trendingButton_Click"/>
+        <Button x:Name="mentionsListButton" Content="Mentions List" HorizontalAlignment="Left" Height="29" Margin="178,61,0,0" VerticalAlignment="Top" Width="79" Click="mentionsListButton_Click"/>
+        <Label x:Name="label" Content="Please choose which list you wish to view" HorizontalAlignment="Left" Height="26" Margin="23,10,0,0" VerticalAlignment="Top" Width="238"/>
+
+    </Grid>
+</Window>

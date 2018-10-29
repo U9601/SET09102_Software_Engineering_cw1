@@ -55,11 +55,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ReadingExcel.cs" />
+    <Compile Include="ListsWindow.xaml.cs">
+      <DependentUpon>ListsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MentionsList.cs" />
+    <Compile Include="MentionsListWindow.xaml.cs">
+      <DependentUpon>MentionsListWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodsList.cs" />
     <Compile Include="SirList.cs" />
     <Compile Include="SirListDisplay.xaml.cs">
       <DependentUpon>SirListDisplay.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TrendingList.cs" />
+    <Compile Include="TrendingListWindow.xaml.cs">
+      <DependentUpon>TrendingListWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="ListsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -72,7 +87,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MentionsListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SirListDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TrendingListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

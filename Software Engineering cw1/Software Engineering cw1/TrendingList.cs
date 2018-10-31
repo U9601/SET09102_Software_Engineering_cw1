@@ -9,6 +9,7 @@ namespace Software_Engineering_cw1
    public class TrendingList
     {
         private string hashTags;
+        private int count;
 
 
         public string HashTags
@@ -20,6 +21,18 @@ namespace Software_Engineering_cw1
             set
             {
                 hashTags = value;
+            }
+        }
+
+        public int Count
+        {
+            get
+            {
+                return count;
+            }
+            set
+            {
+                count = value;
             }
         }
     }

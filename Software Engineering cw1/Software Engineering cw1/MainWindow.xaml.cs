@@ -33,6 +33,10 @@ namespace Software_Engineering_cw1
             InitialsingData();
         }
 
+        List<TrendingList> trendingList = new List<TrendingList>();
+        Dictionary<string, int> trendingDict = new Dictionary<string, int>();
+        int counter2 = 0;
+
 
         private void InitialsingData()
         {
@@ -193,20 +197,48 @@ namespace Software_Engineering_cw1
                                     break;
                                 }
 
+
                                 if (inputBody[i].Contains("#"))
                                 {
+                                    /*
                                     TrendingList hashtagListData = new TrendingList();
                                     hashtagListData.HashTags = inputBody[i].ToString();
-                                    MethodsList.addTrendingsList(hashtagListData);
+                                   */
+                                    trendingDict.Add(inputBody[i].ToString(), i);
+                                    if (trendingDict.ContainsKey(inputBody[i].ToString()))
+                                    {
+
+                                    }
 
                                 }
+
+
+                                /*
+                                 * 
+                                trendingList.Add(hashtagListData);
+
+                                foreach (TrendingList x in trendingList)
+                                {
+                                    if (x.HashTags.ToString().Equals(inputBody[i].ToString()))
+                                    {
+                                        hashtagListData.Count = hashtagListData.Count + 1;
+                                        MethodsList.addTrendingsList(hashtagListData);
+
+                                    }
+                                    MessageBox.Show(x.HashTags.ToString());                                       
+                                }
+                              */
+
+
                                 if (inputBody[i].Contains("@"))
                                 {
                                     MentionsList mentionsListData = new MentionsList();
                                     mentionsListData.TwitterIDs = inputBody[i].ToString();
                                     MethodsList.addMentionsList(mentionsListData);
+
                                 }
                             }
+                            
 
                             MethodsList smsAbbreviations = new MethodsList();
                             List<string> newInputBody = smsAbbreviations.smsAbbreviations(inputBody);

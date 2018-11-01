@@ -33,9 +33,8 @@ namespace Software_Engineering_cw1
             InitialsingData();
         }
 
-        List<TrendingList> trendingList = new List<TrendingList>();
-        Dictionary<string, int> trendingDict = new Dictionary<string, int>();
-        int counter2 = 0;
+
+        //Dictionary<string, int> trendingDict = new Dictionary<string, int>();
 
 
         private void InitialsingData()
@@ -200,35 +199,23 @@ namespace Software_Engineering_cw1
 
                                 if (inputBody[i].Contains("#"))
                                 {
-                                    /*
+
                                     TrendingList hashtagListData = new TrendingList();
-                                    hashtagListData.HashTags = inputBody[i].ToString();
-                                   */
-                                    trendingDict.Add(inputBody[i].ToString(), i);
-                                    if (trendingDict.ContainsKey(inputBody[i].ToString()))
+
+
+                                    if (!MethodsList.trendingsList.Any(x => x.HashTags == inputBody[i].ToString()))
                                     {
-
-                                    }
-
-                                }
-
-
-                                /*
-                                 * 
-                                trendingList.Add(hashtagListData);
-
-                                foreach (TrendingList x in trendingList)
-                                {
-                                    if (x.HashTags.ToString().Equals(inputBody[i].ToString()))
-                                    {
-                                        hashtagListData.Count = hashtagListData.Count + 1;
+                                        hashtagListData.HashTags = inputBody[i].ToString();
+                                        hashtagListData.Count = 1;
                                         MethodsList.addTrendingsList(hashtagListData);
-
                                     }
-                                    MessageBox.Show(x.HashTags.ToString());                                       
-                                }
-                              */
+                                    else
+                                    {
+                                        TrendingList trendingList = MethodsList.trendingsList.FirstOrDefault(n => n.HashTags == inputBody[i].ToString());
+                                        trendingList.Count = trendingList.Count + 1;
+                                    }
 
+                                }
 
                                 if (inputBody[i].Contains("@"))
                                 {
@@ -239,13 +226,9 @@ namespace Software_Engineering_cw1
                                 }
                             }
                             
-
                             MethodsList smsAbbreviations = new MethodsList();
                             List<string> newInputBody = smsAbbreviations.smsAbbreviations(inputBody);
                             textBox3.Text = string.Join(" ", newInputBody);
-
-
-
                         }
                         else
                         {

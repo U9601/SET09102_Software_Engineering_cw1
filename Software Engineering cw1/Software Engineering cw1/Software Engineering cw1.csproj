@@ -59,6 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Email.cs" />
     <Compile Include="ListsWindow.xaml.cs">
       <DependentUpon>ListsWindow.xaml</DependentUpon>
     </Compile>
@@ -76,6 +77,7 @@
     <Compile Include="TrendingListWindow.xaml.cs">
       <DependentUpon>TrendingListWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Twitter.cs" />
     <Page Include="ListsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

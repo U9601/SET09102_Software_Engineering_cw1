@@ -76,11 +76,11 @@ namespace Software_Engineering_cw1
                                 sms.MessageID = textBox.Text;
                                 sms.PhoneNumber = textBox2.Text;
                                 sms.MessageBody = textBox3.Text;
-                                using (StreamWriter writer = File.CreateText(@"output.JSON"))
-                                {
-                                    JsonSerializer serializer = new JsonSerializer();
-                                    serializer.Serialize(writer, sms);
-                                }
+                                 using (StreamWriter writer = File.AppendText(@"output.JSON"))
+                                 {
+                                     JsonSerializer serializer = new JsonSerializer();
+                                     serializer.Serialize(writer, sms);
+                                 }
                             }
                             else
                             {
@@ -164,10 +164,8 @@ namespace Software_Engineering_cw1
 
                                             }
                                         }
-                                    }
-                                    
+                                    }                                    
                                     MethodsList.addSirList(sirListData);
-
                                 }
                                 else
                                 {
@@ -175,6 +173,16 @@ namespace Software_Engineering_cw1
 
                                 }
 
+                            }
+                            Email email = new Email();
+                            email.MessageID = textBox.Text;
+                            email.EmailAddress = textBox2.Text;
+                            email.Subject = textBox4.Text;
+                            email.MessageBody = textBox3.Text;
+                            using (StreamWriter writer = File.AppendText(@"output.JSON"))
+                            {
+                                JsonSerializer serializer = new JsonSerializer();
+                                serializer.Serialize(writer, email);
                             }
 
                         }
@@ -229,6 +237,17 @@ namespace Software_Engineering_cw1
                             MethodsList smsAbbreviations = new MethodsList();
                             List<string> newInputBody = smsAbbreviations.smsAbbreviations(inputBody);
                             textBox3.Text = string.Join(" ", newInputBody);
+
+                            Twitter twitter = new Twitter();
+                            twitter.MessageID = textBox.Text;
+                            twitter.TwitterHandle = textBox2.Text;
+                            twitter.MessageBody = textBox3.Text;
+                            using (StreamWriter writer = File.AppendText(@"output.JSON"))
+                            {
+                                JsonSerializer serializer = new JsonSerializer();
+                                serializer.Serialize(writer, twitter);
+                            }
+
                         }
                         else
                         {

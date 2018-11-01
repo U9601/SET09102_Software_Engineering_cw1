@@ -42,7 +42,12 @@ namespace Software_Engineering_cw1
             label4.Content = "";
             label5.Content = "";
             label6.Content = "";
+            label7.Content = "";
+            label8.Content = "";
             textBox4.Visibility = Visibility.Hidden;
+            dataGrid.Visibility = Visibility.Hidden;
+            dataGrid2.Visibility = Visibility.Hidden;
+            dataGrid3.Visibility = Visibility.Hidden;
         }
         private void button_Click(object sender, RoutedEventArgs e)
         {
@@ -306,6 +311,11 @@ namespace Software_Engineering_cw1
                     label5.Content = "";
                     label3.Content = "Please Enter your Text Here:";
                     label6.Content = "";
+                    label7.Content = "";
+                    label8.Content = "";
+                    dataGrid.Visibility = Visibility.Hidden;
+                    dataGrid2.Visibility = Visibility.Hidden;
+                    dataGrid3.Visibility = Visibility.Hidden;
                     textBox4.Visibility = Visibility.Hidden;
                     textBox3.Margin = new Thickness(241, 205, 0, 0);
                     label3.Margin = new Thickness(10, 205, 0, 0);
@@ -318,6 +328,11 @@ namespace Software_Engineering_cw1
                     label5.Content = "";
                     label3.Content = "Please Write your Email Here:";
                     label6.Content = "Please Write your Subject Here";
+                    label7.Content = "SIR LIST";
+                    label8.Content = "";
+                    dataGrid.Visibility = Visibility.Hidden;
+                    dataGrid2.Visibility = Visibility.Hidden;
+                    dataGrid3.Visibility = Visibility.Hidden;
                     textBox4.Visibility = Visibility.Visible;
                     textBox3.Margin = new Thickness(241, 265, 0, 0);
                     label3.Margin = new Thickness(10, 265, 0, 0);
@@ -330,6 +345,11 @@ namespace Software_Engineering_cw1
                     label5.Content = "";
                     label3.Content = "Please Enter your Tweet Here";
                     label6.Content = "";
+                    label7.Content = "Trending List";
+                    dataGrid.Visibility = Visibility.Hidden;
+                    dataGrid2.Visibility = Visibility.Hidden;
+                    dataGrid3.Visibility = Visibility.Hidden;
+                    textBox4.Visibility = Visibility.Hidden;
                     textBox4.Visibility = Visibility.Hidden;
                     textBox3.Margin = new Thickness(241, 205, 0, 0);
                     label3.Margin = new Thickness(10, 205, 0, 0);
@@ -342,6 +362,10 @@ namespace Software_Engineering_cw1
                     label5.Content = "Detected";
                     label2.Content = "Please use S, E or T Above:";
                     label3.Content = "";
+                    dataGrid.Visibility = Visibility.Hidden;
+                    dataGrid2.Visibility = Visibility.Hidden;
+                    dataGrid3.Visibility = Visibility.Hidden;
+                    textBox4.Visibility = Visibility.Hidden;
                     textBox4.Visibility = Visibility.Hidden;
                     textBox3.Margin = new Thickness(241, 205, 0, 0);
                     label3.Margin = new Thickness(10, 205, 0, 0);

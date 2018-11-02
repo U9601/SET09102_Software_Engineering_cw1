@@ -8,16 +8,16 @@
         Title="MainWindow" Height="543.847" Width="1051.641">
     <Grid>
         <Label x:Name="label" Content="Napier Bank Message Filtering Service&#xD;&#xA;" HorizontalAlignment="Left" Height="45" Margin="213,23,0,0" VerticalAlignment="Top" Width="362" FontSize="20"/>
-        <Label x:Name="label1" Content="Please enter a Message ID:" HorizontalAlignment="Left" Height="29" Margin="10,108,0,0" VerticalAlignment="Top" Width="159"/>
+        <Label x:Name="label1" Content="Please enter a Message ID:" HorizontalAlignment="Left" Height="29" Margin="0,108,0,0" VerticalAlignment="Top" Width="159" FontSize="11"/>
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="29" Margin="241,108,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="294" RenderTransformOrigin="0.574,0.721" TextChanged="textBox_TextChanged" />
-        <Label x:Name="label3" Content="Please enter your Message:" HorizontalAlignment="Left" Height="29" Margin="10,205,0,0" VerticalAlignment="Top" Width="199"/>
+        <Label x:Name="label3" Content="Please enter your Message:" HorizontalAlignment="Left" Height="29" Margin="0,205,0,0" VerticalAlignment="Top" Width="199" FontSize="11"/>
         <Button x:Name="button" Content="Send" HorizontalAlignment="Left" Height="46" Margin="443,457,0,0" VerticalAlignment="Top" Width="92" Click="button_Click"/>
-        <Label x:Name="label2" Content="Please enter a your sender details:" HorizontalAlignment="Left" Height="29" Margin="10,158,0,0" VerticalAlignment="Top" Width="231"/>
-        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="29" Margin="241,158,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="294" RenderTransformOrigin="0.574,0.721" />
+        <Label x:Name="label2" Content="Please enter a your sender details:" HorizontalAlignment="Left" Height="29" Margin="0,158,0,0" VerticalAlignment="Top" Width="210" FontSize="11"/>
+        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="29" Margin="241,158,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="294" RenderTransformOrigin="0.574,0.721" TextChanged="textBox2_TextChanged" />
         <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="216" Margin="241,205,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="294"/>
         <Label x:Name="label4" Content="" HorizontalAlignment="Left" Height="29" Margin="540,108,0,0" VerticalAlignment="Top" Width="149"/>
         <Label x:Name="label5" Content="" HorizontalAlignment="Left" Height="29" Margin="575,124,0,0" VerticalAlignment="Top" Width="114"/>
-        <Label x:Name="label6" Content="" HorizontalAlignment="Left" Height="29" Margin="10,205,0,0" VerticalAlignment="Top" Width="199"/>
+        <Label x:Name="label6" Content="" HorizontalAlignment="Left" Height="29" Margin="0,205,0,0" VerticalAlignment="Top" Width="189" FontSize="11"/>
         <TextBox x:Name="textBox4" HorizontalAlignment="Left" Height="29" Margin="241,205,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="294" RenderTransformOrigin="0.574,0.721" />
         <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="223" Margin="642,108,0,0" VerticalAlignment="Top" Width="343"/>
         <DataGrid x:Name="dataGrid2" HorizontalAlignment="Left" Height="223" Margin="642,108,0,0" VerticalAlignment="Top" Width="170"/>
@@ -25,6 +25,8 @@
         <DataGrid x:Name="dataGrid3" HorizontalAlignment="Left" Height="223" Margin="812,108,0,0" VerticalAlignment="Top" Width="173"/>
         <Label x:Name="label8" Content="" HorizontalAlignment="Left" Height="59" Margin="723,23,0,0" VerticalAlignment="Top" Width="287" FontSize="16"/>
         <Button x:Name="button2" Content="Browse for file" HorizontalAlignment="Left" Height="46" Margin="241,457,0,0" VerticalAlignment="Top" Width="92" Click="button2_Click"/>
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Height="29" Margin="186,158,0,0" VerticalAlignment="Top" Width="55" RenderTransformOrigin="0.5,0.5" FontSize="11"/>
+        <Label x:Name="label9" Content="" HorizontalAlignment="Left" Height="29" Margin="540,158,0,0" VerticalAlignment="Top" Width="97"/>
 
     </Grid>
 </Window>

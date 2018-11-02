@@ -41,15 +41,46 @@ namespace Software_Engineering_cw1
             label6.Content = "";
             label7.Content = "";
             label8.Content = "";
+            label9.Content = "";
             textBox4.Visibility = Visibility.Hidden;
             dataGrid.Visibility = Visibility.Hidden;
             dataGrid2.Visibility = Visibility.Hidden;
             dataGrid3.Visibility = Visibility.Hidden;
+            comboBox.Visibility = Visibility.Hidden;
             button.Margin = new Thickness(443, 430, 0, 0);
             button2.Margin = new Thickness(241, 430, 0, 0);
             Application.Current.MainWindow = this;
             Application.Current.MainWindow.Height = 520;
             Application.Current.MainWindow.Width = 650;
+            comboBox.Items.Add("+93");
+            comboBox.Items.Add("+355");
+            comboBox.Items.Add("+213");
+            comboBox.Items.Add("+376");
+            comboBox.Items.Add("+244");
+            comboBox.Items.Add("+54");
+            comboBox.Items.Add("+374");
+            comboBox.Items.Add("+297");
+            comboBox.Items.Add("+61");
+            comboBox.Items.Add("+43");
+            comboBox.Items.Add("+880");
+            comboBox.Items.Add("+32");
+            comboBox.Items.Add("+44");
+            comboBox.Items.Add("+1");
+            comboBox.Items.Add("+56");
+            comboBox.Items.Add("+53");
+            comboBox.Items.Add("+45");
+            comboBox.Items.Add("+56");
+            comboBox.Items.Add("+20");
+            comboBox.Items.Add("+33");
+            comboBox.Items.Add("+49");
+            comboBox.Items.Add("+30");
+            comboBox.Items.Add("+36");
+            comboBox.Items.Add("+91");
+            comboBox.Items.Add("+98");
+            comboBox.Items.Add("+93");
+            comboBox.Items.Add("+81");
+            comboBox.Items.Add("+93");
+
         }
         private void button_Click(object sender, RoutedEventArgs e)
         {
@@ -130,7 +161,6 @@ namespace Software_Engineering_cw1
                                 serializer.Serialize(writer, email);
                             }
                             dataGrid.ItemsSource = MethodsList.getDataSirList();
-
                         }
                         else
                         {
@@ -141,54 +171,12 @@ namespace Software_Engineering_cw1
                     {
                         if (IsValidTwitterHandle(senderID))
                         {
-                            int counter = inputBody.Count;
-                            MessageBox.Show("Twitter handle is valid");
-                            for (int i = 0; i <= inputBody.Count; i++)
-                            {
-                                if (counter == i)
-                                {
-                                    break;
-                                }
-
-
-                                if (inputBody[i].Contains("#"))
-                                {
-
-                                    TrendingList hashtagListData = new TrendingList();
-
-
-                                    if (!MethodsList.trendingsList.Any(x => x.HashTags == inputBody[i].ToString()))
-                                    {
-                                        hashtagListData.HashTags = inputBody[i].ToString();
-                                        hashtagListData.Count = 1;
-                                        MethodsList.addTrendingsList(hashtagListData);
-                                        dataGrid2.ItemsSource = MethodsList.getDataTrendingsList();
-                                    }
-                                    else
-                                    {
-                                        TrendingList trendingList = MethodsList.trendingsList.FirstOrDefault(n => n.HashTags == inputBody[i].ToString());
-                                        trendingList.Count = trendingList.Count + 1;
-                                        dataGrid2.ItemsSource = null;
-                                        dataGrid2.ItemsSource = MethodsList.getDataTrendingsList();
-                                    }
-
-
-                                }
-
-                                if (inputBody[i].Contains("@"))
-                                {
-                                    MentionsList mentionsListData = new MentionsList();
-                                    mentionsListData.TwitterIDs = inputBody[i].ToString();
-                                    MethodsList.addMentionsList(mentionsListData);
-                                    dataGrid3.ItemsSource = MethodsList.getDataMentionsList();
-
-                                }
-                            }
-
                             MethodsList smsAbbreviations = new MethodsList();
                             List<string> newInputBody = smsAbbreviations.smsAbbreviations(inputBody);
                             textBox3.Text = string.Join(" ", newInputBody);
 
+                            Tweeting(newInputBody);
+                             
                             Twitter twitter = new Twitter();
                             twitter.MessageID = textBox.Text;
                             twitter.TwitterHandle = textBox2.Text;
@@ -312,6 +300,55 @@ namespace Software_Engineering_cw1
                 textBox3.Text = string.Join(" ", newInputBody);
             }
         }
+
+        public void Tweeting(List<string> inputBody)
+        {
+            MethodsList smsAbbreviations = new MethodsList();
+            List<string> newInputBody = smsAbbreviations.smsAbbreviations(inputBody);
+            textBox3.Text = string.Join(" ", newInputBody);
+            int counter = inputBody.Count;
+            MessageBox.Show("Twitter handle is valid");
+            for (int i = 0; i <= inputBody.Count; i++)
+            {
+                if (counter == i)
+                {
+                    break;
+                }
+
+
+                if (inputBody[i].Contains("#"))
+                {
+
+                    TrendingList hashtagListData = new TrendingList();
+
+
+                    if (!MethodsList.trendingsList.Any(x => x.HashTags == inputBody[i].ToString()))
+                    {
+                        hashtagListData.HashTags = inputBody[i].ToString();
+                        hashtagListData.Count = 1;
+                        MethodsList.addTrendingsList(hashtagListData);
+                        dataGrid2.ItemsSource = MethodsList.getDataTrendingsList();
+                    }
+                    else
+                    {
+                        TrendingList trendingList = MethodsList.trendingsList.FirstOrDefault(n => n.HashTags == inputBody[i].ToString());
+                        trendingList.Count = trendingList.Count + 1;
+                        dataGrid2.ItemsSource = null;
+                        dataGrid2.ItemsSource = MethodsList.getDataTrendingsList();
+                    }
+
+
+                }
+
+                if (inputBody[i].Contains("@"))
+                {
+                    MentionsList mentionsListData = new MentionsList();
+                    mentionsListData.TwitterIDs = inputBody[i].ToString();
+                    MethodsList.addMentionsList(mentionsListData);
+                    dataGrid3.ItemsSource = MethodsList.getDataMentionsList();
+                }
+            }
+        }
    
            
 
@@ -331,12 +368,14 @@ namespace Software_Engineering_cw1
                     label6.Content = "";
                     label7.Content = "";
                     label8.Content = "";
+                    textBox2.Clear();
                     dataGrid.Visibility = Visibility.Hidden;
                     dataGrid2.Visibility = Visibility.Hidden;
                     dataGrid3.Visibility = Visibility.Hidden;
                     textBox4.Visibility = Visibility.Hidden;
+                    comboBox.Visibility = Visibility.Visible;
                     textBox3.Margin = new Thickness(241, 205, 0, 0);
-                    label3.Margin = new Thickness(10, 205, 0, 0);
+                    label3.Margin = new Thickness(0, 205, 0, 0);
                     button.Margin = new Thickness(443, 430, 0, 0);
                     button2.Margin = new Thickness(241, 430, 0, 0);
                     Application.Current.MainWindow = this;
@@ -352,14 +391,17 @@ namespace Software_Engineering_cw1
                     label6.Content = "Please Write your Subject Here";
                     label7.Content = "SIR LIST";
                     label8.Content = "";
+                    textBox2.Clear();
                     dataGrid.Visibility = Visibility.Visible;
                     dataGrid2.Visibility = Visibility.Hidden;
                     dataGrid3.Visibility = Visibility.Hidden;
                     textBox4.Visibility = Visibility.Visible;
+                    comboBox.Visibility = Visibility.Hidden;
                     textBox.Margin = new Thickness(241, 108, 0, 0);
                     textBox2.Margin = new Thickness(241, 158, 0, 0);
                     textBox3.Margin = new Thickness(241, 255, 0, 0);
-                    label3.Margin = new Thickness(10, 255, 0, 0);
+                    label3.Margin = new Thickness(0, 255, 0, 0);
+                    label6.Margin = new Thickness(0, 205, 0, 0);
                     label7.Margin = new Thickness(780, 70, 0, 0);
                     button.Margin = new Thickness(443, 480, 0, 0);
                     button2.Margin = new Thickness(241, 480, 0, 0);
@@ -376,13 +418,15 @@ namespace Software_Engineering_cw1
                     label6.Content = "";
                     label8.Content = "Trending List";
                     label7.Content = "Mentions List";
+                    textBox2.Clear();
                     dataGrid.Visibility = Visibility.Hidden;
                     dataGrid2.Visibility = Visibility.Visible;
                     dataGrid3.Visibility = Visibility.Visible;
                     textBox4.Visibility = Visibility.Hidden;
                     textBox4.Visibility = Visibility.Hidden;
+                    comboBox.Visibility = Visibility.Hidden;
                     textBox3.Margin = new Thickness(241, 205, 0, 0);
-                    label3.Margin = new Thickness(10, 205, 0, 0);
+                    label3.Margin = new Thickness(0, 205, 0, 0);
                     label7.Margin = new Thickness(845, 70, 0, 0);
                     label8.Margin = new Thickness(680, 70, 0, 0);
                     button.Margin = new Thickness(443, 430, 0, 0);
@@ -405,6 +449,7 @@ namespace Software_Engineering_cw1
                     dataGrid3.Visibility = Visibility.Hidden;
                     textBox4.Visibility = Visibility.Hidden;
                     textBox4.Visibility = Visibility.Hidden;
+                    comboBox.Visibility = Visibility.Hidden;
                     textBox3.Margin = new Thickness(241, 205, 0, 0);
                     label3.Margin = new Thickness(10, 205, 0, 0);
                     button.Margin = new Thickness(333, 369, 0, 0);
@@ -436,11 +481,15 @@ namespace Software_Engineering_cw1
                     obj = jsonDeserialize.jsonDeserializer(filename);
                     string messageID = obj["MessageID"].ToString();
                     string messageBody = obj["MessageBody"].ToString();
+                    List<string> inputBody = new List<string>(messageBody.Split(null));
                     if (messageID[0].ToString() == "S")
                     {
                         textBox.Text = obj["MessageID"].ToString();
                         textBox2.Text = obj["PhoneNumber"].ToString();
                         textBox3.Text = obj["MessageBody"].ToString();
+                        MethodsList smsAbbreviations = new MethodsList();
+                        List<string> newInputBody = smsAbbreviations.smsAbbreviations(inputBody);
+                        textBox3.Text = string.Join(" ", newInputBody);
 
                     }
                     else if(messageID[0].ToString() == "E")
@@ -448,8 +497,7 @@ namespace Software_Engineering_cw1
                         textBox.Text = obj["MessageID"].ToString();
                         textBox2.Text = obj["EmailAddress"].ToString();
                         textBox4.Text = obj["Subject"].ToString();
-                        textBox3.Text = obj["MessageBody"].ToString();
-                        List<string> inputBody = new List<string>(messageBody.Split(null));
+                        textBox3.Text = obj["MessageBody"].ToString();                   
                         Emailing(inputBody);
 
                     }
@@ -458,11 +506,57 @@ namespace Software_Engineering_cw1
                         textBox.Text = obj["MessageID"].ToString();
                         textBox2.Text = obj["TwitterHandle"].ToString();
                         textBox3.Text = obj["MessageBody"].ToString();
+                        Tweeting(inputBody);
                     }
                 }
                 else
                 {
                     MessageBox.Show("The file you have selected is empty D:");
+                }
+
+            }
+        }
+
+        private void textBox2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string messageID = textBox.Text;
+            string validation = textBox2.Text;
+
+            if (messageID != "")
+            {
+                string messageType = messageID[0].ToString();
+                if (messageType == "S")
+                {
+                    if (IsValidPhoneNumber(validation))
+                    {
+                        label9.Content = "Valid";
+                    }
+                    else
+                    {
+                        label9.Content = "Invalid";
+                    }
+                }
+                if(messageType == "E")
+                {
+                    if (IsValidEmail(validation))
+                    {
+                        label9.Content = "Valid";
+                    }
+                    else
+                    {
+                        label9.Content = "Invalid";
+                    }
+                }
+                if (messageType == "T")
+                {
+                    if (IsValidTwitterHandle(validation))
+                    {
+                        label9.Content = "Valid";
+                    }
+                    else
+                    {
+                        label9.Content = "Invalid";
+                    }
                 }
 
             }

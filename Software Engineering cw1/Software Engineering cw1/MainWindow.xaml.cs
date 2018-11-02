@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -33,10 +34,6 @@ namespace Software_Engineering_cw1
             InitialsingData();
         }
 
-
-        //Dictionary<string, int> trendingDict = new Dictionary<string, int>();
-
-
         private void InitialsingData()
         {
             label4.Content = "";
@@ -48,6 +45,11 @@ namespace Software_Engineering_cw1
             dataGrid.Visibility = Visibility.Hidden;
             dataGrid2.Visibility = Visibility.Hidden;
             dataGrid3.Visibility = Visibility.Hidden;
+            button.Margin = new Thickness(443, 430, 0, 0);
+            button2.Margin = new Thickness(241, 430, 0, 0);
+            Application.Current.MainWindow = this;
+            Application.Current.MainWindow.Height = 520;
+            Application.Current.MainWindow.Width = 650;
         }
         private void button_Click(object sender, RoutedEventArgs e)
         {
@@ -81,11 +83,11 @@ namespace Software_Engineering_cw1
                                 sms.MessageID = textBox.Text;
                                 sms.PhoneNumber = textBox2.Text;
                                 sms.MessageBody = textBox3.Text;
-                                 using (StreamWriter writer = File.AppendText(@"output.JSON"))
-                                 {
-                                     JsonSerializer serializer = new JsonSerializer();
-                                     serializer.Serialize(writer, sms);
-                                 }
+                                using (StreamWriter writer = File.AppendText(@"output.json"))
+                                {
+                                    JsonSerializer serializer = new JsonSerializer();
+                                    serializer.Serialize(writer, sms);
+                                }
                             }
                             else
                             {
@@ -113,82 +115,21 @@ namespace Software_Engineering_cw1
                             }
                             else
                             {
-                                string[] inputSubject = emailSubject.Split(null);
                                 MethodsList urlQuarantine = new MethodsList();
                                 List<string> newInputBody = urlQuarantine.urlQuarantine(inputBody);
-                                DateTime Date = new DateTime();
-                                bool hasDate = false;
-
-                                foreach(string text in inputSubject)
-                                {
-                                    try
-                                    {
-                                        if (inputSubject.Contains("SIR"))
-                                        {
-                                            Date = DateTime.Parse(text);
-                                            hasDate = true;
-                                            break;
-                                        }
-                                    }
-                                    catch (Exception ex)
-                                    {
-
-                                    }
-                                }
-                                if (hasDate)
-                                {
-                                    MessageBox.Show("important Email");
-                                    SirList sirListData = new SirList();
-                                    bool onlySix = false;
-                                    if (inputBody.Contains("Sort"))
-                                    {
-                                        sirListData.SortCode = (inputBody[2]);
-                                    }
-                                    if (inputBody.Contains("Nature"))
-                                    {
-                                        if (inputBody.Count == 7)
-                                        {
-                                            sirListData.NatureofIncident = inputBody[6];
-                                            onlySix = true;
-                                            textBox3.Text = string.Join(" ", newInputBody);
-
-                                        }
-                                        if (onlySix == false)
-                                        {
-
-                                            if (inputBody[7].Equals("Attack") || inputBody[7].Equals("Theft") || inputBody[7].Equals("Abuse") || inputBody[7].Equals("Threat") || inputBody[7].Equals("Incident") || inputBody[7].Equals("Loss"))
-                                            {
-                                                sirListData.NatureofIncident = inputBody[6].ToString() + " " + inputBody[7].ToString();
-                                                textBox3.Text = string.Join(" ", newInputBody);
-
-                                            }
-                                            else
-                                            {
-                                                sirListData.NatureofIncident = inputBody[6];
-                                                textBox3.Text = string.Join(" ", newInputBody);
-
-                                            }
-                                        }
-                                    }                                    
-                                    MethodsList.addSirList(sirListData);
-                                }
-                                else
-                                {
-                                    textBox3.Text = string.Join(" ", newInputBody);
-
-                                }
-
+                                Emailing(newInputBody);
                             }
                             Email email = new Email();
                             email.MessageID = textBox.Text;
                             email.EmailAddress = textBox2.Text;
                             email.Subject = textBox4.Text;
                             email.MessageBody = textBox3.Text;
-                            using (StreamWriter writer = File.AppendText(@"output.JSON"))
+                            using (StreamWriter writer = File.AppendText(@"output.json"))
                             {
                                 JsonSerializer serializer = new JsonSerializer();
                                 serializer.Serialize(writer, email);
                             }
+                            dataGrid.ItemsSource = MethodsList.getDataSirList();
 
                         }
                         else
@@ -221,12 +162,16 @@ namespace Software_Engineering_cw1
                                         hashtagListData.HashTags = inputBody[i].ToString();
                                         hashtagListData.Count = 1;
                                         MethodsList.addTrendingsList(hashtagListData);
+                                        dataGrid2.ItemsSource = MethodsList.getDataTrendingsList();
                                     }
                                     else
                                     {
                                         TrendingList trendingList = MethodsList.trendingsList.FirstOrDefault(n => n.HashTags == inputBody[i].ToString());
                                         trendingList.Count = trendingList.Count + 1;
+                                        dataGrid2.ItemsSource = null;
+                                        dataGrid2.ItemsSource = MethodsList.getDataTrendingsList();
                                     }
+
 
                                 }
 
@@ -235,10 +180,11 @@ namespace Software_Engineering_cw1
                                     MentionsList mentionsListData = new MentionsList();
                                     mentionsListData.TwitterIDs = inputBody[i].ToString();
                                     MethodsList.addMentionsList(mentionsListData);
+                                    dataGrid3.ItemsSource = MethodsList.getDataMentionsList();
 
                                 }
                             }
-                            
+
                             MethodsList smsAbbreviations = new MethodsList();
                             List<string> newInputBody = smsAbbreviations.smsAbbreviations(inputBody);
                             textBox3.Text = string.Join(" ", newInputBody);
@@ -247,7 +193,7 @@ namespace Software_Engineering_cw1
                             twitter.MessageID = textBox.Text;
                             twitter.TwitterHandle = textBox2.Text;
                             twitter.MessageBody = textBox3.Text;
-                            using (StreamWriter writer = File.AppendText(@"output.JSON"))
+                            using (StreamWriter writer = File.AppendText(@"output.json"))
                             {
                                 JsonSerializer serializer = new JsonSerializer();
                                 serializer.Serialize(writer, twitter);
@@ -271,7 +217,7 @@ namespace Software_Engineering_cw1
         {
             return Regex.Match(number, @"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$").Success;
         }
-        
+
         public static bool IsValidEmail(string email)
         {
             try
@@ -287,15 +233,87 @@ namespace Software_Engineering_cw1
 
         public static bool IsValidTwitterHandle(string twitterHandle)
         {
-          if(twitterHandle[0].ToString().Equals("@") && twitterHandle.Length <=15)
+            if (twitterHandle[0].ToString().Equals("@") && twitterHandle.Length <= 15)
             {
                 return true;
             }
             else
             {
-               return false;
+                return false;
             }
         }
+
+        public void Emailing(List<string> newInputBody)
+        {
+            string emailSubject = textBox4.Text;
+            string[] inputSubject = emailSubject.Split(null);
+
+            DateTime Date = new DateTime();
+            bool hasDate = false;
+
+            foreach (string text in inputSubject)
+            {
+                try
+                {
+                    if (inputSubject.Contains("SIR"))
+                    {
+                        Date = DateTime.Parse(text);
+                        hasDate = true;
+                        break;
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            if (hasDate)
+            {
+                MessageBox.Show("important Email");
+                SirList sirListData = new SirList();
+                bool onlySix = false;
+                if (newInputBody.Contains("Sort"))
+                {
+                    sirListData.SortCode = (newInputBody[2]);
+                }
+                if (newInputBody.Contains("Nature"))
+                {
+                    if (newInputBody.Count == 7)
+                    {
+                        sirListData.NatureofIncident = newInputBody[6];
+                        onlySix = true;
+                        textBox3.Text = string.Join(" ", newInputBody);
+
+                    }
+                    if (onlySix == false)
+                    {
+
+                        if (newInputBody[7].Equals("Attack") || newInputBody[7].Equals("Theft") || newInputBody[7].Equals("Abuse") || newInputBody[7].Equals("Threat") || newInputBody[7].Equals("Incident") || newInputBody[7].Equals("Loss"))
+                        {
+                            sirListData.NatureofIncident = newInputBody[6].ToString() + " " + newInputBody[7].ToString();
+                            textBox3.Text = string.Join(" ", newInputBody);
+
+                        }
+                        else
+                        {
+                            sirListData.NatureofIncident = newInputBody[6];
+                            textBox3.Text = string.Join(" ", newInputBody);
+
+                        }
+                    }
+                }
+                MethodsList.addSirList(sirListData);
+                dataGrid.ItemsSource = MethodsList.getDataSirList();
+
+
+            }
+            else
+            {
+                textBox3.Text = string.Join(" ", newInputBody);
+            }
+        }
+   
+           
 
         private void textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -319,7 +337,11 @@ namespace Software_Engineering_cw1
                     textBox4.Visibility = Visibility.Hidden;
                     textBox3.Margin = new Thickness(241, 205, 0, 0);
                     label3.Margin = new Thickness(10, 205, 0, 0);
-                    button.Margin = new Thickness(333, 369, 0, 0);
+                    button.Margin = new Thickness(443, 430, 0, 0);
+                    button2.Margin = new Thickness(241, 430, 0, 0);
+                    Application.Current.MainWindow = this;
+                    Application.Current.MainWindow.Height = 520;
+                    Application.Current.MainWindow.Width = 650;
                 }
                 else if(messageType == "E")
                 {
@@ -330,13 +352,20 @@ namespace Software_Engineering_cw1
                     label6.Content = "Please Write your Subject Here";
                     label7.Content = "SIR LIST";
                     label8.Content = "";
-                    dataGrid.Visibility = Visibility.Hidden;
+                    dataGrid.Visibility = Visibility.Visible;
                     dataGrid2.Visibility = Visibility.Hidden;
                     dataGrid3.Visibility = Visibility.Hidden;
                     textBox4.Visibility = Visibility.Visible;
-                    textBox3.Margin = new Thickness(241, 265, 0, 0);
-                    label3.Margin = new Thickness(10, 265, 0, 0);
-                    button.Margin = new Thickness(330, 410, 0, 0);
+                    textBox.Margin = new Thickness(241, 108, 0, 0);
+                    textBox2.Margin = new Thickness(241, 158, 0, 0);
+                    textBox3.Margin = new Thickness(241, 255, 0, 0);
+                    label3.Margin = new Thickness(10, 255, 0, 0);
+                    label7.Margin = new Thickness(780, 70, 0, 0);
+                    button.Margin = new Thickness(443, 480, 0, 0);
+                    button2.Margin = new Thickness(241, 480, 0, 0);
+                    Application.Current.MainWindow = this;
+                    Application.Current.MainWindow.Height = 580;
+                    Application.Current.MainWindow.Width = 1060;
                 }
                 else if (messageType == "T")
                 {
@@ -345,16 +374,22 @@ namespace Software_Engineering_cw1
                     label5.Content = "";
                     label3.Content = "Please Enter your Tweet Here";
                     label6.Content = "";
-                    label7.Content = "Trending List";
+                    label8.Content = "Trending List";
+                    label7.Content = "Mentions List";
                     dataGrid.Visibility = Visibility.Hidden;
-                    dataGrid2.Visibility = Visibility.Hidden;
-                    dataGrid3.Visibility = Visibility.Hidden;
+                    dataGrid2.Visibility = Visibility.Visible;
+                    dataGrid3.Visibility = Visibility.Visible;
                     textBox4.Visibility = Visibility.Hidden;
                     textBox4.Visibility = Visibility.Hidden;
                     textBox3.Margin = new Thickness(241, 205, 0, 0);
                     label3.Margin = new Thickness(10, 205, 0, 0);
-                    button.Margin = new Thickness(333, 369, 0, 0);
-
+                    label7.Margin = new Thickness(845, 70, 0, 0);
+                    label8.Margin = new Thickness(680, 70, 0, 0);
+                    button.Margin = new Thickness(443, 430, 0, 0);
+                    button2.Margin = new Thickness(241, 430, 0, 0);
+                    Application.Current.MainWindow = this;
+                    Application.Current.MainWindow.Height = 520;
+                    Application.Current.MainWindow.Width = 1060;
                 }
                 else
                 {
@@ -362,6 +397,9 @@ namespace Software_Engineering_cw1
                     label5.Content = "Detected";
                     label2.Content = "Please use S, E or T Above:";
                     label3.Content = "";
+                    label6.Content = "";
+                    label7.Content = "";
+                    label8.Content = "";
                     dataGrid.Visibility = Visibility.Hidden;
                     dataGrid2.Visibility = Visibility.Hidden;
                     dataGrid3.Visibility = Visibility.Hidden;
@@ -370,16 +408,64 @@ namespace Software_Engineering_cw1
                     textBox3.Margin = new Thickness(241, 205, 0, 0);
                     label3.Margin = new Thickness(10, 205, 0, 0);
                     button.Margin = new Thickness(333, 369, 0, 0);
-
+                    button2.Margin = new Thickness(241, 430, 0, 0);
+                    Application.Current.MainWindow = this;
+                    Application.Current.MainWindow.Height = 520;
+                    Application.Current.MainWindow.Width = 710;
                 }
             }
 
         }
-        private void ListButton_Click(object sender, RoutedEventArgs e)
-        {
-            ListsWindow newWin = new ListsWindow();
-            newWin.Show();
 
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog browse = new Microsoft.Win32.OpenFileDialog();
+
+            browse.DefaultExt = ".json";
+            browse.Filter = "JSON Files (.json)|*.json";
+
+            bool? result = browse.ShowDialog();
+
+            if (result == true)
+            {
+                string filename = browse.FileName;
+                if (new FileInfo(filename).Length != 0)
+                {
+                    MethodsList jsonDeserialize = new MethodsList();
+                    JObject obj = new JObject();
+                    obj = jsonDeserialize.jsonDeserializer(filename);
+                    string messageID = obj["MessageID"].ToString();
+                    string messageBody = obj["MessageBody"].ToString();
+                    if (messageID[0].ToString() == "S")
+                    {
+                        textBox.Text = obj["MessageID"].ToString();
+                        textBox2.Text = obj["PhoneNumber"].ToString();
+                        textBox3.Text = obj["MessageBody"].ToString();
+
+                    }
+                    else if(messageID[0].ToString() == "E")
+                    {
+                        textBox.Text = obj["MessageID"].ToString();
+                        textBox2.Text = obj["EmailAddress"].ToString();
+                        textBox4.Text = obj["Subject"].ToString();
+                        textBox3.Text = obj["MessageBody"].ToString();
+                        List<string> inputBody = new List<string>(messageBody.Split(null));
+                        Emailing(inputBody);
+
+                    }
+                    else if((messageID[0].ToString() == "T"))
+                    {
+                        textBox.Text = obj["MessageID"].ToString();
+                        textBox2.Text = obj["TwitterHandle"].ToString();
+                        textBox3.Text = obj["MessageBody"].ToString();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("The file you have selected is empty D:");
+                }
+
+            }
         }
     }
 }

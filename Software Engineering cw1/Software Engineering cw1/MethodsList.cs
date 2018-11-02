@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 public class MethodsList
 {
@@ -139,6 +141,29 @@ public class MethodsList
         return inputBody;
     }
 
+    public JObject jsonDeserializer(string file)
+    {
+        JObject obj = new JObject();
+        using (FileStream fs = new FileStream(file, FileMode.Open, FileAccess.Read))
+        using (StreamReader sr = new StreamReader(fs))
+        using (JsonTextReader reader = new JsonTextReader(sr))
+        {
+            while (reader.Read())
+            {
+
+                if (reader.TokenType == JsonToken.StartObject)
+                {
+                    // Load each object from the stream and do something with it
+                    obj = JsonSerializer.Create().Deserialize<JObject>(reader);
+                    return obj;
+                }
+
+            }
+            
+        }
+      return null;       
+    }
+
     public static void addSirList(SirList newSirList)
     {
         sirList.Add(newSirList);
@@ -164,7 +189,7 @@ public class MethodsList
         return mentionsList;
 
     }
-    public static ObservableCollection<TrendingList> getDataTrendingList()
+    public static ObservableCollection<TrendingList> getDataTrendingsList()
     {
         return trendingsList;
 

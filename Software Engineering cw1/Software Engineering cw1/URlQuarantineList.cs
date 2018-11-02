@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Software_Engineering_cw1
 {
-    public class URlQuarantineList
+    public class URLQuarantineList
     {
         private string url;
 

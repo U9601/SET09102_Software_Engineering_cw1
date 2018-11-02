@@ -46,6 +46,7 @@ namespace Software_Engineering_cw1
             dataGrid.Visibility = Visibility.Hidden;
             dataGrid2.Visibility = Visibility.Hidden;
             dataGrid3.Visibility = Visibility.Hidden;
+            dataGrid4.Visibility = Visibility.Hidden;
             comboBox.Visibility = Visibility.Hidden;
             button.Margin = new Thickness(443, 430, 0, 0);
             button2.Margin = new Thickness(241, 430, 0, 0);
@@ -90,7 +91,7 @@ namespace Software_Engineering_cw1
             string emailSubject = textBox4.Text;
             List<string> inputBody = new List<string>(messageBody.Split(null));
 
-            if (messageID.Length != 10)
+            if (!Regex.Match(messageID, @"[a-zA-Z][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]").Success)
             {
                 MessageBox.Show("The Message ID must be 10 characters long including the starting letter");
 
@@ -161,6 +162,7 @@ namespace Software_Engineering_cw1
                                 serializer.Serialize(writer, email);
                             }
                             dataGrid.ItemsSource = MethodsList.getDataSirList();
+                            dataGrid4.ItemsSource = MethodsList.getDataQuaratineList();
                         }
                         else
                         {
@@ -271,7 +273,6 @@ namespace Software_Engineering_cw1
                         sirListData.NatureofIncident = newInputBody[6];
                         onlySix = true;
                         textBox3.Text = string.Join(" ", newInputBody);
-
                     }
                     if (onlySix == false)
                     {
@@ -292,6 +293,7 @@ namespace Software_Engineering_cw1
                 }
                 MethodsList.addSirList(sirListData);
                 dataGrid.ItemsSource = MethodsList.getDataSirList();
+                dataGrid4.ItemsSource = MethodsList.getDataQuaratineList();
 
 
             }
@@ -372,6 +374,7 @@ namespace Software_Engineering_cw1
                     dataGrid.Visibility = Visibility.Hidden;
                     dataGrid2.Visibility = Visibility.Hidden;
                     dataGrid3.Visibility = Visibility.Hidden;
+                    dataGrid4.Visibility = Visibility.Hidden;
                     textBox4.Visibility = Visibility.Hidden;
                     comboBox.Visibility = Visibility.Visible;
                     textBox3.Margin = new Thickness(241, 205, 0, 0);
@@ -390,11 +393,12 @@ namespace Software_Engineering_cw1
                     label3.Content = "Please Write your Email Here:";
                     label6.Content = "Please Write your Subject Here";
                     label7.Content = "SIR LIST";
-                    label8.Content = "";
+                    label8.Content = "URL Quarantine";
                     textBox2.Clear();
                     dataGrid.Visibility = Visibility.Visible;
                     dataGrid2.Visibility = Visibility.Hidden;
                     dataGrid3.Visibility = Visibility.Hidden;
+                    dataGrid4.Visibility = Visibility.Visible;
                     textBox4.Visibility = Visibility.Visible;
                     comboBox.Visibility = Visibility.Hidden;
                     textBox.Margin = new Thickness(241, 108, 0, 0);
@@ -402,7 +406,8 @@ namespace Software_Engineering_cw1
                     textBox3.Margin = new Thickness(241, 255, 0, 0);
                     label3.Margin = new Thickness(0, 255, 0, 0);
                     label6.Margin = new Thickness(0, 205, 0, 0);
-                    label7.Margin = new Thickness(780, 70, 0, 0);
+                    label8.Margin = new Thickness(845, 70, 0, 0);
+                    label7.Margin = new Thickness(680, 70, 0, 0);
                     button.Margin = new Thickness(443, 480, 0, 0);
                     button2.Margin = new Thickness(241, 480, 0, 0);
                     Application.Current.MainWindow = this;
@@ -422,6 +427,7 @@ namespace Software_Engineering_cw1
                     dataGrid.Visibility = Visibility.Hidden;
                     dataGrid2.Visibility = Visibility.Visible;
                     dataGrid3.Visibility = Visibility.Visible;
+                    dataGrid4.Visibility = Visibility.Hidden;
                     textBox4.Visibility = Visibility.Hidden;
                     textBox4.Visibility = Visibility.Hidden;
                     comboBox.Visibility = Visibility.Hidden;
@@ -446,6 +452,7 @@ namespace Software_Engineering_cw1
                     label8.Content = "";
                     dataGrid.Visibility = Visibility.Hidden;
                     dataGrid2.Visibility = Visibility.Hidden;
+                    dataGrid4.Visibility = Visibility.Hidden;
                     dataGrid3.Visibility = Visibility.Hidden;
                     textBox4.Visibility = Visibility.Hidden;
                     textBox4.Visibility = Visibility.Hidden;
@@ -530,10 +537,14 @@ namespace Software_Engineering_cw1
                     if (IsValidPhoneNumber(validation))
                     {
                         label9.Content = "Valid";
+                        label9.Background = Brushes.Green;
+                        textBox2.Background = Brushes.Green;
                     }
                     else
                     {
                         label9.Content = "Invalid";
+                        label9.Background = Brushes.Red;
+                        textBox2.Background = Brushes.Red;
                     }
                 }
                 if(messageType == "E")
@@ -541,10 +552,14 @@ namespace Software_Engineering_cw1
                     if (IsValidEmail(validation))
                     {
                         label9.Content = "Valid";
+                        label9.Background = Brushes.Green;
+                        textBox2.Background = Brushes.Green;
                     }
                     else
                     {
                         label9.Content = "Invalid";
+                        textBox2.Background = Brushes.Red;
+                        label9.Background = Brushes.Red;
                     }
                 }
                 if (messageType == "T")
@@ -552,10 +567,14 @@ namespace Software_Engineering_cw1
                     if (IsValidTwitterHandle(validation))
                     {
                         label9.Content = "Valid";
+                        label9.Background = Brushes.Green;
+                        textBox2.Background = Brushes.Green;
                     }
                     else
                     {
                         label9.Content = "Invalid";
+                        label9.Background = Brushes.Red;
+                        textBox2.Background = Brushes.Red;
                     }
                 }
 

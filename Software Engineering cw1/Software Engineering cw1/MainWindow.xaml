@@ -19,14 +19,15 @@
         <Label x:Name="label5" Content="" HorizontalAlignment="Left" Height="29" Margin="575,124,0,0" VerticalAlignment="Top" Width="114"/>
         <Label x:Name="label6" Content="" HorizontalAlignment="Left" Height="29" Margin="0,205,0,0" VerticalAlignment="Top" Width="189" FontSize="11"/>
         <TextBox x:Name="textBox4" HorizontalAlignment="Left" Height="29" Margin="241,205,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="294" RenderTransformOrigin="0.574,0.721" />
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="223" Margin="642,108,0,0" VerticalAlignment="Top" Width="343"/>
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="223" Margin="642,108,0,0" VerticalAlignment="Top" Width="170"/>
         <DataGrid x:Name="dataGrid2" HorizontalAlignment="Left" Height="223" Margin="642,108,0,0" VerticalAlignment="Top" Width="170"/>
         <Label x:Name="label7" Content="Napier Bank Message Filtering Service&#xA;" HorizontalAlignment="Left" Height="59" Margin="749,23,0,0" VerticalAlignment="Top" Width="287" FontSize="16"/>
         <DataGrid x:Name="dataGrid3" HorizontalAlignment="Left" Height="223" Margin="812,108,0,0" VerticalAlignment="Top" Width="173"/>
         <Label x:Name="label8" Content="" HorizontalAlignment="Left" Height="59" Margin="723,23,0,0" VerticalAlignment="Top" Width="287" FontSize="16"/>
         <Button x:Name="button2" Content="Browse for file" HorizontalAlignment="Left" Height="46" Margin="241,457,0,0" VerticalAlignment="Top" Width="92" Click="button2_Click"/>
         <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Height="29" Margin="186,158,0,0" VerticalAlignment="Top" Width="55" RenderTransformOrigin="0.5,0.5" FontSize="11"/>
-        <Label x:Name="label9" Content="" HorizontalAlignment="Left" Height="29" Margin="540,158,0,0" VerticalAlignment="Top" Width="97"/>
+        <Label x:Name="label9" Content="" HorizontalAlignment="Left" Height="29" Margin="540,158,0,0" VerticalAlignment="Top" Width="61"/>
+        <DataGrid x:Name="dataGrid4" HorizontalAlignment="Left" Height="223" Margin="812,108,0,0" VerticalAlignment="Top" Width="173"/>
 
     </Grid>
 </Window>

@@ -66,6 +66,7 @@
     <Compile Include="SMS.cs" />
     <Compile Include="TrendingList.cs" />
     <Compile Include="Twitter.cs" />
+    <Compile Include="URlQuarantineList.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -12,6 +12,7 @@ public class MethodsList
     public static ObservableCollection<SirList> sirList = new ObservableCollection<SirList>();
     public static ObservableCollection<MentionsList> mentionsList = new ObservableCollection<MentionsList>();
     public static ObservableCollection<TrendingList> trendingsList = new ObservableCollection<TrendingList>();
+    public static ObservableCollection<URlQuarantineList> urlQuarantineList = new ObservableCollection<URlQuarantineList>();
 
     public ArrayList readFromExcel()
     {
@@ -133,6 +134,9 @@ public class MethodsList
             if (inputBody[i].Contains("https://") || inputBody[i].Contains("http://") || inputBody[i].Contains("www."))
             {
                 string url = inputBody[i].ToString();
+                URlQuarantineList urlQuarantineData = new URlQuarantineList();
+                urlQuarantineData.URL = url;
+                urlQuarantineList.Add(urlQuarantineData);
                 url = "<" + "URL Quarantined" + ">";
                 inputBody.Insert(i + 1, url);
                 inputBody.RemoveAt(i);
@@ -178,6 +182,10 @@ public class MethodsList
     {
         trendingsList.Add(newTrendingList);
     }
+    public static void addURLQuaratineList(URlQuarantineList newURLQuarantine)
+    {
+        urlQuarantineList.Add(newURLQuarantine);
+    }
 
     public static ObservableCollection<SirList> getDataSirList()
     {
@@ -195,5 +203,10 @@ public class MethodsList
 
     }
 
+    public static ObservableCollection<URlQuarantineList> getDataQuaratineList()
+    {
+        return urlQuarantineList;
+
+    }
 }
 

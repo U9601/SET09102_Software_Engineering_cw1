@@ -450,6 +450,7 @@ namespace Software_Engineering_cw1
                     label6.Content = "";
                     label7.Content = "";
                     label8.Content = "";
+                    textBox2.Clear();
                     dataGrid.Visibility = Visibility.Hidden;
                     dataGrid2.Visibility = Visibility.Hidden;
                     dataGrid4.Visibility = Visibility.Hidden;

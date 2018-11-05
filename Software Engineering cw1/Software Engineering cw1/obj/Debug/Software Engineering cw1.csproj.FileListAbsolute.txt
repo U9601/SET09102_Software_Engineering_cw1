@@ -28,13 +28,5 @@ C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engin
 \\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\obj\Debug\Software Engineering cw1.csproj.GenerateResource.Cache
 \\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\bin\Debug\Newtonsoft.Json.dll
 \\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\bin\Debug\Newtonsoft.Json.xml
-\\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\obj\Debug\ListsWindow.g.cs
-\\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\obj\Debug\MentionsListWindow.g.cs
-\\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\obj\Debug\SirListDisplay.g.cs
-\\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\obj\Debug\TrendingListWindow.g.cs
-\\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\obj\Debug\ListsWindow.baml
-\\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\obj\Debug\MentionsListWindow.baml
-\\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\obj\Debug\SirListDisplay.baml
-\\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\obj\Debug\TrendingListWindow.baml
 C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\Software Engineering cw1\bin\Debug\Newtonsoft.Json.xml

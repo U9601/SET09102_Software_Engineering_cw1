@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Software_Engineering_cw1
 {
+    //Getter and Setters for url quarantinelist
     public class URLQuarantineList
     {
         private string url;

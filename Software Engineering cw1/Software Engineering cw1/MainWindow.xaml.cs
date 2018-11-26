@@ -34,6 +34,7 @@ namespace Software_Engineering_cw1
             InitialsingData();
         }
 
+        //Initialising all text boxes and labels to start off with and adding area codes
         private void InitialsingData()
         {
             label4.Content = "";
@@ -83,15 +84,18 @@ namespace Software_Engineering_cw1
             comboBox.Items.Add("+93");
 
         }
+        //setting up obj which is used for using JSON input
         List<JObject> obj = new List<JObject>();
         private void button_Click(object sender, RoutedEventArgs e)
         {
+            //Gets the values of the text bodys
             string messageID = textBox.Text;
             string messageBody = textBox3.Text;
             string senderID = textBox2.Text;
             string emailSubject = textBox4.Text;
             List<string> inputBody = new List<string>(messageBody.Split(null));
-
+            
+            // checks to see if the message ID fits the standard of a letter then 9 digits
             if (!Regex.Match(messageID, @"[a-zA-Z][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]").Success)
             {
                 MessageBox.Show("The Message ID must be 10 characters long including the starting letter");
@@ -102,14 +106,16 @@ namespace Software_Engineering_cw1
 
                 if (messageID != null)
                 {
-
+                    //checks to see if the letter is S
                     if (messageID[0].ToString().Equals("S") || messageID[0].ToString().Equals("s"))
                     {
+                        //checks to see if the phone number is valid
                         if (IsValidPhoneNumber(senderID))
                         {
                             MessageBox.Show("Phone number is valid");
                             if (messageBody.Length <= 140)
                             {
+                                //passes sms abbreviations to be expanded on in methods list
                                 MethodsList smsAbbreviations = new MethodsList();
                                 List<string> newinputBody = smsAbbreviations.smsAbbreviations(inputBody);
                                 textBox3.Text = string.Join(" ", newinputBody);
@@ -117,6 +123,7 @@ namespace Software_Engineering_cw1
                                 sms.MessageID = textBox.Text;
                                 sms.PhoneNumber = textBox2.Text;
                                 sms.MessageBody = textBox3.Text;
+                                //writes the sms to a json file
                                 using (StreamWriter writer = File.AppendText(@"output.json"))
                                 {
                                     JsonSerializer serializer = new JsonSerializer();
@@ -135,8 +142,10 @@ namespace Software_Engineering_cw1
                             MessageBox.Show("Phone number is not valid");
                         }
                     }
+                    // checks to see if Message ID starts with E
                     else if (messageID[0].ToString().Equals("E") || messageID[0].ToString().Equals("e"))
                     {
+                        //checks to see if the email is valid
                         if (IsValidEmail(senderID))
                         {
                             MessageBox.Show("Email Address is valid");
@@ -150,20 +159,24 @@ namespace Software_Engineering_cw1
                             }
                             else
                             {
+                                //does URL Quarantining here
                                 MethodsList urlQuarantine = new MethodsList();
                                 List<string> newInputBody = urlQuarantine.urlQuarantine(inputBody);
+                                //passes the rest to the email method
                                 Emailing(newInputBody);
-                            }
+                            }                    
                             Email email = new Email();
                             email.MessageID = textBox.Text;
                             email.EmailAddress = textBox2.Text;
                             email.Subject = textBox4.Text;
                             email.MessageBody = textBox3.Text;
+                            //adds email to output josn
                             using (StreamWriter writer = File.AppendText(@"output.json"))
                             {
                                 JsonSerializer serializer = new JsonSerializer();
                                 serializer.Serialize(writer, email);
                             }
+                            //gets the data for the datagrid to display SIR List and URL Quarantine
                             dataGrid.ItemsSource = MethodsList.getDataSirList();
                             dataGrid4.ItemsSource = MethodsList.getDataQuaratineList();
                         }
@@ -172,20 +185,24 @@ namespace Software_Engineering_cw1
                             MessageBox.Show("Email Address is not valid");
                         }
                     }
+                    //checks to Message ID starts with T 
                     else if (messageID[0].ToString().Equals("T") || messageID[0].ToString().Equals("t"))
                     {
+                        //checks to see if the twitter handle is valid
                         if (IsValidTwitterHandle(senderID))
                         {
+                            //does the abbreviations expansion
                             MethodsList smsAbbreviations = new MethodsList();
                             List<string> newInputBody = smsAbbreviations.smsAbbreviations(inputBody);
                             textBox3.Text = string.Join(" ", newInputBody);
-
+                            //passes the rest onto the tweeting method
                             Tweeting(newInputBody);
 
                             Twitter twitter = new Twitter();
                             twitter.MessageID = textBox.Text;
                             twitter.TwitterHandle = textBox2.Text;
                             twitter.MessageBody = textBox3.Text;
+                            //the twitter object is written to JSON file output
                             using (StreamWriter writer = File.AppendText(@"output.json"))
                             {
                                 JsonSerializer serializer = new JsonSerializer();
@@ -205,6 +222,7 @@ namespace Software_Engineering_cw1
                 }
             }
         }
+        //next 3 methods check if the S,E or T are valid
 
         public static bool IsValidPhoneNumber(string number)
         {
@@ -224,6 +242,7 @@ namespace Software_Engineering_cw1
             }
         }
 
+        //this has issues
         public static bool IsValidTwitterHandle(string twitterHandle)
         {
             if (twitterHandle[0].ToString().Equals("@") && twitterHandle.Length <= 15 && twitterHandle.Length != 0 )
@@ -236,20 +255,25 @@ namespace Software_Engineering_cw1
             }
         }
 
+        //Emailing method
         public void Emailing(List<string> newInputBody)
         {
+            //gets the subject
             string emailSubject = textBox4.Text;
             string[] inputSubject = emailSubject.Split(null);
 
             DateTime Date = new DateTime();
             bool hasDate = false;
 
+            //loops around text in the subject
             foreach (string text in inputSubject)
             {
                 try
                 {
+                    //checks to see if it contains SIR
                     if (inputSubject.Contains("SIR"))
                     {
+                        //if it does then check if the next part is a datetime
                         Date = DateTime.Parse(text);
                         hasDate = true;
                         break;
@@ -260,17 +284,22 @@ namespace Software_Engineering_cw1
 
                 }
             }
+            //if it has a date then it is important
             if (hasDate)
             {
                 MessageBox.Show("important Email");
                 SirList sirListData = new SirList();
                 bool onlySix = false;
+                //checks to see if it contains sort
                 if (newInputBody.Contains("Sort"))
                 {
+                    //set sorecode
                     sirListData.SortCode = (newInputBody[2]);
                 }
+                //checks to see if it contains Nature
                 if (newInputBody.Contains("Nature"))
                 {
+                    //if it only has 7 words then do
                     if (newInputBody.Count == 7)
                     {
                         sirListData.NatureofIncident = newInputBody[6];
@@ -279,21 +308,25 @@ namespace Software_Engineering_cw1
                     }
                     if (onlySix == false)
                     {
+                        //checks to see if the next word after the first incident is these
 
                         if (newInputBody[7].Equals("Attack") || newInputBody[7].Equals("Theft") || newInputBody[7].Equals("Abuse") || newInputBody[7].Equals("Threat") || newInputBody[7].Equals("Incident") || newInputBody[7].Equals("Loss"))
                         {
+                            //if so then combine the 2 words together
                             sirListData.NatureofIncident = newInputBody[6].ToString() + " " + newInputBody[7].ToString();
                             textBox3.Text = string.Join(" ", newInputBody);
 
                         }
                         else
                         {
+                            //sets the nature otherwise
                             sirListData.NatureofIncident = newInputBody[6];
                             textBox3.Text = string.Join(" ", newInputBody);
 
                         }
                     }
                 }
+                // addes the data to the datagrid and then gets the data for sir list and quarantine list
                 MethodsList.addSirList(sirListData);
                 dataGrid.ItemsSource = MethodsList.getDataSirList();
                 dataGrid4.ItemsSource = MethodsList.getDataQuaratineList();
@@ -305,9 +338,10 @@ namespace Software_Engineering_cw1
                 textBox3.Text = string.Join(" ", newInputBody);
             }
         }
-
+        //tweeting module
         public void Tweeting(List<string> inputBody)
         {
+            //does abbreviations
             MethodsList smsAbbreviations = new MethodsList();
             List<string> newInputBody = smsAbbreviations.smsAbbreviations(inputBody);
             textBox3.Text = string.Join(" ", newInputBody);
@@ -320,15 +354,16 @@ namespace Software_Engineering_cw1
                     break;
                 }
 
-
+                //if it contains a #
                 if (inputBody[i].Contains("#"))
                 {
 
                     TrendingList hashtagListData = new TrendingList();
 
-
+                    //use LinQ to see if the hash tag has been made before
                     if (!MethodsList.trendingsList.Any(x => x.HashTags == inputBody[i].ToString()))
                     {
+                        //if hasnt then make it and add to the collection and datagrid
                         hashtagListData.HashTags = inputBody[i].ToString();
                         hashtagListData.Count = 1;
                         MethodsList.addTrendingsList(hashtagListData);
@@ -336,6 +371,7 @@ namespace Software_Engineering_cw1
                     }
                     else
                     {
+                        //if it is then update the count and reset the datagrid then add to it
                         TrendingList trendingList = MethodsList.trendingsList.FirstOrDefault(n => n.HashTags == inputBody[i].ToString());
                         trendingList.Count = trendingList.Count + 1;
                         dataGrid2.ItemsSource = null;
@@ -344,9 +380,10 @@ namespace Software_Engineering_cw1
 
 
                 }
-
+                //if the body contains an @
                 if (inputBody[i].Contains("@"))
                 {
+                    //then add it to the collection and the datagrid
                     MentionsList mentionsListData = new MentionsList();
                     mentionsListData.TwitterIDs = inputBody[i].ToString();
                     MethodsList.addMentionsList(mentionsListData);
@@ -356,7 +393,7 @@ namespace Software_Engineering_cw1
         }
 
 
-
+        //This next part does all the styling if you type S,E or T
         private void textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             string messageID = textBox.Text;
@@ -473,6 +510,7 @@ namespace Software_Engineering_cw1
 
         }
 
+        //This is for browesing to find a file to be read in JSON
         private void button2_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog browse = new Microsoft.Win32.OpenFileDialog();
@@ -487,6 +525,7 @@ namespace Software_Engineering_cw1
                 string filename = browse.FileName;
                 if (new FileInfo(filename).Length != 0)
                 {
+                    //Deserialize the JSON file
                     MethodsList jsonDeserialize = new MethodsList();
                     obj = jsonDeserialize.jsonDeserializer(filename);
                     for (int i = 0; i < obj.Count; i++)
@@ -533,10 +572,13 @@ namespace Software_Engineering_cw1
             }
         }
 
+        //all JSON message IDs are put into the list box
         private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //if the user selects one then gets its ID
             string messageID = listBox.SelectedItem.ToString();
 
+            //Then find that obj in the list of json objects and get the rest of its data and display it
             if (messageID[0].ToString() == "S")
             {
                 JObject findobj = obj.FirstOrDefault(n => n["MessageID"].ToString().Equals(messageID));
@@ -578,7 +620,7 @@ namespace Software_Engineering_cw1
 
 
 
-
+        //This changes the colour of the validation text box depending whether or not the input is valid or invalid
         private void textBox2_TextChanged(object sender, TextChangedEventArgs e)
         {
             string messageID = textBox.Text;

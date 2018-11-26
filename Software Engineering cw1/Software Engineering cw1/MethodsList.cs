@@ -10,11 +10,13 @@ using System.Linq;
 using System.Text;
 public class MethodsList
 {
+    //All of the observable collections that hold each lists
     public static ObservableCollection<SirList> sirList = new ObservableCollection<SirList>();
     public static ObservableCollection<MentionsList> mentionsList = new ObservableCollection<MentionsList>();
     public static ObservableCollection<TrendingList> trendingsList = new ObservableCollection<TrendingList>();
     public static ObservableCollection<URLQuarantineList> urlQuarantineList = new ObservableCollection<URLQuarantineList>();
 
+    //Read from excel and into an array list
     public ArrayList readFromExcel()
     {
         ArrayList readingfromExcel = new ArrayList();
@@ -37,6 +39,8 @@ public class MethodsList
         }
     }
 
+    //splitting the returned Array list by \t for the cells and , so that LOL and <Laughing out Loud> arent in the same element
+    //as each other
     public ArrayList spliceAnArray(ArrayList textWords)
     {
         ArrayList splicedDataArray = new ArrayList();
@@ -66,6 +70,7 @@ public class MethodsList
 
     }
 
+    // this method is for changing LOL in <Laughing out loud>
     public List<string> smsAbbreviations(List<string> inputBody)
     {
         MethodsList readingFromExcel = new MethodsList();
@@ -73,6 +78,10 @@ public class MethodsList
         ArrayList splicedTextWords = readingFromExcel.spliceAnArray(textWords);
         string changeAbbreviation = null;
         bool allWordsChanged = false;
+
+        //i = input from user     j = list of abbreviations
+        // I run a nested loop inside of a loop so that once i has been compleltey checked then
+        //j will be restarted back to the begnning again and will compare the next i to the next j
 
         for (int j = 0; j <= inputBody.Count; j++)
         {
@@ -122,6 +131,7 @@ public class MethodsList
 
     }
 
+    //used to change any urls in emails to URL Quarantined and add them to a list of Quarantine
     public List<string> urlQuarantine(List<string> inputBody)
     {
         int counter = inputBody.Count;
@@ -131,7 +141,7 @@ public class MethodsList
             {
                 break;
             }
-
+            //checks to see if any words contains this start meaning it is a URL
             if (inputBody[i].Contains("https://") || inputBody[i].Contains("http://") || inputBody[i].Contains("www."))
             {
                 string url = inputBody[i].ToString();
@@ -146,6 +156,7 @@ public class MethodsList
         return inputBody;
     }
 
+    //deserializer for JSON which returns a list of json objects
     public List<JObject> jsonDeserializer(string file)
     {
         /* string json = File.ReadAllText(file);
@@ -154,6 +165,7 @@ public class MethodsList
         var obj = JsonConvert.DeserializeObject<List<JObject>>(json);
          return obj;
          */
+         // setting up objects and file stream
         List<JObject> obj = new List<JObject>();
         using (FileStream fs = new FileStream(file, FileMode.Open, FileAccess.Read))
         using (StreamReader sr = new StreamReader(fs))
@@ -164,7 +176,7 @@ public class MethodsList
 
                 if (reader.TokenType == JsonToken.StartObject)
                 {
-                    // Load each object from the stream and do something with it
+                    // Load each object from the stream and add it to a list of JSON objects
                     obj.Add(JsonSerializer.Create().Deserialize<JObject>(reader));
                    
                 }
@@ -174,7 +186,7 @@ public class MethodsList
 
         }     
     }
-
+    //next 4 methods add data to their repsected observable collections
     public static void addSirList(SirList newSirList)
     {
         sirList.Add(newSirList);
@@ -193,7 +205,7 @@ public class MethodsList
     {
         urlQuarantineList.Add(newURLQuarantine);
     }
-
+    //next 4 methods return data to their repsected observable collections
     public static ObservableCollection<SirList> getDataSirList()
     {
         return sirList;

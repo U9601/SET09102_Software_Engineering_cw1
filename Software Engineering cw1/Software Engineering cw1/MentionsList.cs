@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Software_Engineering_cw1
 {
+    //Getters and setters for Mentions List
     public class MentionsList
     {
         private string twitterIDs;

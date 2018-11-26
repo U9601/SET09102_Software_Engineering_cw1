@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Software_Engineering_cw1
 {
+    //Getters and Setters for email
    public class Email
     {
         private string messageID;

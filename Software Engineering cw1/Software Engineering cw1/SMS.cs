@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Software_Engineering_cw1
 {
+    //Getters and setters for SMS's
    public class SMS
     {
         private string messageID;

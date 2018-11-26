@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Software_Engineering_cw1
 {
+    //Gettes and setters for the SIR List
     public class SirList
     {
         private string sortCode;

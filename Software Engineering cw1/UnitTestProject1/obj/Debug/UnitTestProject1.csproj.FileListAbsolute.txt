@@ -1,0 +1,11 @@
+\\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\UnitTestProject1\obj\Debug\UnitTestProject1.csprojResolveAssemblyReference.cache
+\\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\UnitTestProject1\bin\Debug\UnitTestProject1.dll
+\\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\UnitTestProject1\bin\Debug\UnitTestProject1.pdb
+\\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\UnitTestProject1\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+\\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\UnitTestProject1\bin\Debug\Software Engineering cw1.exe
+\\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\UnitTestProject1\bin\Debug\Newtonsoft.Json.dll
+\\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\UnitTestProject1\bin\Debug\Software Engineering cw1.pdb
+\\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\UnitTestProject1\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+\\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\UnitTestProject1\bin\Debug\Newtonsoft.Json.xml
+\\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\UnitTestProject1\obj\Debug\UnitTestProject1.dll
+\\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\UnitTestProject1\obj\Debug\UnitTestProject1.pdb

@@ -6,7 +6,8 @@ using System.Collections.ObjectModel;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-
+using System.Linq;
+using System.Text;
 public class MethodsList
 {
     public static ObservableCollection<SirList> sirList = new ObservableCollection<SirList>();
@@ -145,9 +146,15 @@ public class MethodsList
         return inputBody;
     }
 
-    public JObject jsonDeserializer(string file)
+    public List<JObject> jsonDeserializer(string file)
     {
-        JObject obj = new JObject();
+        /* string json = File.ReadAllText(file);
+
+
+        var obj = JsonConvert.DeserializeObject<List<JObject>>(json);
+         return obj;
+         */
+        List<JObject> obj = new List<JObject>();
         using (FileStream fs = new FileStream(file, FileMode.Open, FileAccess.Read))
         using (StreamReader sr = new StreamReader(fs))
         using (JsonTextReader reader = new JsonTextReader(sr))
@@ -158,14 +165,14 @@ public class MethodsList
                 if (reader.TokenType == JsonToken.StartObject)
                 {
                     // Load each object from the stream and do something with it
-                    obj = JsonSerializer.Create().Deserialize<JObject>(reader);
-                    return obj;
+                    obj.Add(JsonSerializer.Create().Deserialize<JObject>(reader));
+                   
                 }
 
             }
-            
-        }
-      return null;       
+            return obj;
+
+        }     
     }
 
     public static void addSirList(SirList newSirList)
@@ -208,5 +215,7 @@ public class MethodsList
         return urlQuarantineList;
 
     }
+
+
 }
 

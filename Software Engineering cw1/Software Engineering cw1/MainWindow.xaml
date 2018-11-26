@@ -28,6 +28,7 @@
         <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Height="29" Margin="186,158,0,0" VerticalAlignment="Top" Width="55" RenderTransformOrigin="0.5,0.5" FontSize="11"/>
         <Label x:Name="label9" Content="" HorizontalAlignment="Left" Height="29" Margin="540,158,0,0" VerticalAlignment="Top" Width="61"/>
         <DataGrid x:Name="dataGrid4" HorizontalAlignment="Left" Height="223" Margin="812,108,0,0" VerticalAlignment="Top" Width="173"/>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="100" Margin="38,270,0,0" VerticalAlignment="Top" Width="151" RenderTransformOrigin="0.5,0.5" SelectionChanged="listBox_SelectionChanged"/>
 
     </Grid>
 </Window>

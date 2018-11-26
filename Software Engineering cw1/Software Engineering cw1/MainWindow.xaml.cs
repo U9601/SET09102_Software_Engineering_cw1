@@ -83,6 +83,7 @@ namespace Software_Engineering_cw1
             comboBox.Items.Add("+93");
 
         }
+        List<JObject> obj = new List<JObject>();
         private void button_Click(object sender, RoutedEventArgs e)
         {
             string messageID = textBox.Text;
@@ -96,7 +97,8 @@ namespace Software_Engineering_cw1
                 MessageBox.Show("The Message ID must be 10 characters long including the starting letter");
 
             }
-            else {
+            else
+            {
 
                 if (messageID != null)
                 {
@@ -120,6 +122,7 @@ namespace Software_Engineering_cw1
                                     JsonSerializer serializer = new JsonSerializer();
                                     serializer.Serialize(writer, sms);
                                 }
+
                             }
                             else
                             {
@@ -178,7 +181,7 @@ namespace Software_Engineering_cw1
                             textBox3.Text = string.Join(" ", newInputBody);
 
                             Tweeting(newInputBody);
-                             
+
                             Twitter twitter = new Twitter();
                             twitter.MessageID = textBox.Text;
                             twitter.TwitterHandle = textBox2.Text;
@@ -223,7 +226,7 @@ namespace Software_Engineering_cw1
 
         public static bool IsValidTwitterHandle(string twitterHandle)
         {
-            if (twitterHandle[0].ToString().Equals("@") && twitterHandle.Length <= 15)
+            if (twitterHandle[0].ToString().Equals("@") && twitterHandle.Length <= 15 && twitterHandle.Length != 0 )
             {
                 return true;
             }
@@ -351,17 +354,17 @@ namespace Software_Engineering_cw1
                 }
             }
         }
-   
-           
+
+
 
         private void textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             string messageID = textBox.Text;
-            
+
             if (messageID != "")
             {
                 string messageType = messageID[0].ToString();
-                if(messageType == "S")
+                if (messageType == "S")
                 {
                     label4.Content = "SMS Selected";
                     label2.Content = "Please Enter your Phone Number Here:";
@@ -385,7 +388,7 @@ namespace Software_Engineering_cw1
                     Application.Current.MainWindow.Height = 520;
                     Application.Current.MainWindow.Width = 650;
                 }
-                else if(messageType == "E")
+                else if (messageType == "E")
                 {
                     label4.Content = "Email Selected";
                     label2.Content = "Please Enter your Email Address Here:";
@@ -485,36 +488,41 @@ namespace Software_Engineering_cw1
                 if (new FileInfo(filename).Length != 0)
                 {
                     MethodsList jsonDeserialize = new MethodsList();
-                    JObject obj = new JObject();
                     obj = jsonDeserialize.jsonDeserializer(filename);
-                    string messageID = obj["MessageID"].ToString();
-                    string messageBody = obj["MessageBody"].ToString();
-                    List<string> inputBody = new List<string>(messageBody.Split(null));
-                    if (messageID[0].ToString() == "S")
+                    for (int i = 0; i < obj.Count; i++)
                     {
-                        textBox.Text = obj["MessageID"].ToString();
-                        textBox2.Text = obj["PhoneNumber"].ToString();
-                        textBox3.Text = obj["MessageBody"].ToString();
-                        MethodsList smsAbbreviations = new MethodsList();
-                        List<string> newInputBody = smsAbbreviations.smsAbbreviations(inputBody);
-                        textBox3.Text = string.Join(" ", newInputBody);
+                        string messageID = obj[i]["MessageID"].ToString();
+                        string messageBody = obj[i]["MessageBody"].ToString();
+                        listBox.Items.Add(obj[i]["MessageID"]);
+                      
 
-                    }
-                    else if(messageID[0].ToString() == "E")
-                    {
-                        textBox.Text = obj["MessageID"].ToString();
-                        textBox2.Text = obj["EmailAddress"].ToString();
-                        textBox4.Text = obj["Subject"].ToString();
-                        textBox3.Text = obj["MessageBody"].ToString();                   
-                        Emailing(inputBody);
+                        /* if (messageID[0].ToString() == "S")
+                         {
+                             textBox.Text = obj[i]["MessageID"].ToString();
+                             textBox2.Text = obj[i]["PhoneNumber"].ToString();
+                             textBox3.Text = obj[i]["MessageBody"].ToString();
+                             MethodsList smsAbbreviations = new MethodsList();
+                             List<string> newInputBody = smsAbbreviations.smsAbbreviations(inputBody);
+                             textBox3.Text = string.Join(" ", newInputBody);
 
-                    }
-                    else if((messageID[0].ToString() == "T"))
-                    {
-                        textBox.Text = obj["MessageID"].ToString();
-                        textBox2.Text = obj["TwitterHandle"].ToString();
-                        textBox3.Text = obj["MessageBody"].ToString();
-                        Tweeting(inputBody);
+                         }
+                         else if (messageID[0].ToString() == "E")
+                         {
+                             textBox.Text = obj[i]["MessageID"].ToString();
+                             textBox2.Text = obj[i]["EmailAddress"].ToString();
+                             textBox4.Text = obj[i]["Subject"].ToString();
+                             textBox3.Text = obj[i]["MessageBody"].ToString();
+                             Emailing(inputBody);
+
+                         }
+                         else if ((messageID[0].ToString() == "T"))
+                         {
+                             textBox.Text = obj[i]["MessageID"].ToString();
+                             textBox2.Text = obj[i]["TwitterHandle"].ToString();
+                             textBox3.Text = obj[i]["MessageBody"].ToString();
+                             Tweeting(inputBody);
+                         }
+                     }*/
                     }
                 }
                 else
@@ -524,6 +532,52 @@ namespace Software_Engineering_cw1
 
             }
         }
+
+        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string messageID = listBox.SelectedItem.ToString();
+
+            if (messageID[0].ToString() == "S")
+            {
+                JObject findobj = obj.FirstOrDefault(n => n["MessageID"].ToString().Equals(messageID));
+                textBox.Text = findobj["MessageID"].ToString();
+                textBox2.Text = findobj["PhoneNumber"].ToString();
+                textBox3.Text = findobj["MessageBody"].ToString();
+                MethodsList smsAbbreviations = new MethodsList();
+                string messageBody = findobj["MessageBody"].ToString();
+                List<string> inputBody = new List<string>(messageBody.Split(null));
+                List<string> newInputBody = smsAbbreviations.smsAbbreviations(inputBody);
+                textBox3.Text = string.Join(" ", newInputBody);
+            }
+            else if (messageID[0].ToString() == "E")
+            {
+                JObject findobj = obj.FirstOrDefault(n => n["MessageID"].ToString().Equals(messageID));
+                textBox.Text = findobj["MessageID"].ToString();
+                textBox2.Text = findobj["EmailAddress"].ToString();
+                textBox4.Text = findobj["Subject"].ToString();
+                textBox3.Text = findobj["MessageBody"].ToString();
+                string messageBody = findobj["MessageBody"].ToString();
+                List<string> inputBody = new List<string>(messageBody.Split(null));
+                Emailing(inputBody);
+
+            }
+            else if ((messageID[0].ToString() == "T"))
+            {
+                JObject findobj = obj.FirstOrDefault(n => n["MessageID"].ToString().Equals(messageID));
+                textBox.Text = findobj["MessageID"].ToString();
+                textBox2.Text = findobj["TwitterHandle"].ToString();
+                textBox3.Text = findobj["MessageBody"].ToString();
+                string messageBody = findobj["MessageBody"].ToString();
+                List<string> inputBody = new List<string>(messageBody.Split(null));
+                Tweeting(inputBody);
+
+            }
+        }
+    
+
+
+
+
 
         private void textBox2_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -548,7 +602,7 @@ namespace Software_Engineering_cw1
                         textBox2.Background = Brushes.Red;
                     }
                 }
-                if(messageType == "E")
+                if (messageType == "E")
                 {
                     if (IsValidEmail(validation))
                     {
@@ -583,3 +637,7 @@ namespace Software_Engineering_cw1
         }
     }
 }
+
+
+   
+    

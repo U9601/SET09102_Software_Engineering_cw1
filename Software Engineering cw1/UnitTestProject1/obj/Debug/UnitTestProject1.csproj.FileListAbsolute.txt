@@ -9,3 +9,14 @@
 \\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\UnitTestProject1\bin\Debug\Newtonsoft.Json.xml
 \\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\UnitTestProject1\obj\Debug\UnitTestProject1.dll
 \\vmware-host\Shared Folders\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\UnitTestProject1\obj\Debug\UnitTestProject1.pdb
+C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\UnitTestProject1\bin\Debug\UnitTestProject1.dll
+C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\UnitTestProject1\bin\Debug\UnitTestProject1.pdb
+C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\UnitTestProject1\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\UnitTestProject1\bin\Debug\Software Engineering cw1.exe
+C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\UnitTestProject1\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\UnitTestProject1\bin\Debug\Software Engineering cw1.pdb
+C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\UnitTestProject1\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\UnitTestProject1\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\UnitTestProject1\obj\Debug\UnitTestProject1.csprojResolveAssemblyReference.cache
+C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\UnitTestProject1\obj\Debug\UnitTestProject1.dll
+C:\Users\Chris\Documents\GitHub\SET09102_Software_Engineering_cw1\Software Engineering cw1\UnitTestProject1\obj\Debug\UnitTestProject1.pdb

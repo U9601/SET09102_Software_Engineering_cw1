@@ -581,6 +581,8 @@ namespace Software_Engineering_cw1
             //Then find that obj in the list of json objects and get the rest of its data and display it
             if (messageID[0].ToString() == "S")
             {
+                textBox.Clear();
+                textBox2.Clear();
                 JObject findobj = obj.FirstOrDefault(n => n["MessageID"].ToString().Equals(messageID));
                 textBox.Text = findobj["MessageID"].ToString();
                 textBox2.Text = findobj["PhoneNumber"].ToString();
@@ -593,6 +595,8 @@ namespace Software_Engineering_cw1
             }
             else if (messageID[0].ToString() == "E")
             {
+                textBox.Clear();
+                textBox2.Clear();
                 JObject findobj = obj.FirstOrDefault(n => n["MessageID"].ToString().Equals(messageID));
                 textBox.Text = findobj["MessageID"].ToString();
                 textBox2.Text = findobj["EmailAddress"].ToString();
@@ -605,6 +609,8 @@ namespace Software_Engineering_cw1
             }
             else if ((messageID[0].ToString() == "T"))
             {
+                textBox.Clear();
+                textBox2.Clear();
                 JObject findobj = obj.FirstOrDefault(n => n["MessageID"].ToString().Equals(messageID));
                 textBox.Text = findobj["MessageID"].ToString();
                 textBox2.Text = findobj["TwitterHandle"].ToString();
